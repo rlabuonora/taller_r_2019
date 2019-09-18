@@ -1,0 +1,197 @@
+---
+title: "Data Wrangling"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+##`dplyr`
+
+Funciones para las tareas más comunes:
+
+- `filter`
+- `select`
+- `arrange`
+- `mutate`
+- `summarise`
+- `group_by`
+
+---
+# Datos
+
+
+```{r}
+library(nycflights13)
+suppressPackageStartupMessages(library(dplyr))
+flights
+```
+---
+
+# Filter
+
+--
+Seleccionar las filas de enero
+```{r}
+dplyr::filter(flights, month == 1)
+
+```
+
+---
+## Seleccionar las filas de el primer dia de enero
+```{r}
+filter(flights, month == 1, day == 1)
+```
+
+--
+
+- Si paso varias condiciones, se combinan como `AND`
+
+
+---
+## Condiciones más complejas
+ 
+Puedo usar operadores lógicos:
+
+```{r}
+filter(flights, month == 1 & day == 1)
+```
+
+---
+## Condiciones más complejas (2)
+
+```{r}
+filter(flights, month == 1 | month == 2)
+# Es lo mismo que
+
+filter(flights, month %in% c(1, 2))
+```
+
+- Cuidado! 
+`&&` es parecido a `&`, `==` no tiene nada que ver con `=`.
+
+---
+
+# Ejercicios:
+
+- Encontrar los vuelos que:
+
+  - Tuvieron un atraso en la llegada de dos horas o más
+  - Volaron a Houston (IAH o HOU)
+  - Son de United, American, or Delta
+  - Salieron en invierno (Junio, Julio, Agosto)
+  - Salieron entre medianoche y las 6am
+
+
+- Investigar cómo funciona `between`. Usarla para alguna de las preguntas anteriores.
+
+
+---
+
+##`select`
+
+Selecciona columnas.
+
+```{r}
+msleep <- read.csv("./data/msleep_ggplot2.csv")
+head(msleep)
+```
+
+---
+```{r}
+head(select(msleep, name, sleep_total))
+```
+
+---
+##`select` (2)
+
+```{r}
+head(select(msleep, -name))
+```
+
+---
+##`select` (3)
+
+```{r}
+head(select(msleep, starts_with("sl")))
+```
+
+---
+# Otros helpers:
+
+ * `ends_with`
+ * `contains`
+ * `matches`
+ * `one_of`
+ 
+---
+
+## Ejercicios
+
+- Todas las formas posibles de seleccionar `dep_time`, `dep_delay`, `arr_time`, y `arr_delay` de `flights`.
+- Investigar que hace one_of(), y como lo usarían con un vector: 
+
+`vars <- c("year", "month", "day", "dep_delay", "arr_delay")`
+
+
+---
+
+## Mutate
+
+```{r}
+
+flights_sml <- select(flights, 
+  year:day, 
+  ends_with("delay"), 
+  distance, 
+  air_time
+)
+
+
+```
+---
+## Mutate
+
+```{r}
+mutate(flights_sml,
+  gain = dep_delay - arr_delay,
+  speed = distance / air_time * 60
+)
+```
+
+---
+
+
+## Mutate (2)
+Las funciones que usamos dentro de `mutate` deben estar vectorizadas: toman un vector como argumento y devuelven un vector del mismo tamaño como resultado:
+
+```{r}
+mutate(flights_sml,
+  gain = dep_delay - arr_delay,
+  speed = distance / air_time * 60
+)
+```
+
+- `dep_delay` y `arr_delay` son vectores
+- ¿`air_time * 60`?
+
+---
+## Funciones Útiles
+
+- `lead()`
+- `lag()` 
+- `cumsum()`
+
+---
+## Bibliografía
+
+<div align="left">
+<img src="imgs/r4ds.png" width=250 height=375>
+</div>
