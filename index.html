@@ -420,6 +420,164 @@ left_join(t4a, t4b)
 ## 5 Brazil      2000   80488  174504898
 ## 6 China       2000  213766 1280428583
 ```
+
+---
+# Ejercicio RPAE
+
+Abrir archivo
+
+
+```r
+marco_rpae &lt;- readRDS('/home/rlabuonora/bases/confidencial/marco_rpae.rds')
+names(marco_rpae)
+```
+
+```
+##  [1] "RUT"              "INE"              "RSOCIAL"         
+##  [4] "CIIU4_2011"       "PO_2011"          "MIMP_2011"       
+##  [7] "VTAS_2011"        "Intervalo_Ventas" "DEPTO_2011"      
+## [10] "CIIU4_2012"       "PO_2012"          "MIMP_2012"       
+## [13] "VTAS_2012"        "DEPTO_2012"       "CIIU4_2013"      
+## [16] "PO_2013"          "MIMP_2013"        "VTAS_2013"       
+## [19] "DEPTO_2013"       "CIIU4_2014"       "PO_2014"         
+## [22] "MIMP_2014"        "VTAS_2014"        "DEPTO_2014"      
+## [25] "DEPTO_2015"       "PO_2015"          "MIMP_2015"       
+## [28] "CIIU4_2015"       "DEPTO_2016"       "PO_2016"         
+## [31] "MIMP_2016"        "CIIU4_2016"       "PrimarioÚltimo"  
+## [34] "NOMBRE"           "DEPTO_UTE"        "NUMDEP"          
+## [37] "DEPTO11"          "DEPTO12"          "DEPTO13"         
+## [40] "DEPTO14"          "DEPTO15"          "DEPTO16"         
+## [43] "DEPTOUTE"         "DEPTO"            "DEPTO_REV"       
+## [46] "filter_$"         "DIV_11"           "DIV_12"          
+## [49] "DIV_13"           "DIV_14"           "DIV_15"          
+## [52] "DIV_16"
+```
+
+---
+Seleccionar campos: 
+
+- rut, ine, razon_social, depto, ventas, personal_ocupado
+
+
+```r
+marco_rpae &lt;- marco_rpae %&gt;% 
+  rename(rut=RUT, nro_ine = INE, razon_social=RSOCIAL, depto=DEPTO) %&gt;%
+  select(rut, nro_ine, razon_social, depto, matches("_20\\d{2}$"), -matches("DEPTO_"))
+```
+
+---
+# Cambiar nombres
+nombre de variables en minúscula
+
+```r
+names(marco_rpae) &lt;- tolower(names(marco_rpae))
+```
+
+---
+#Tidy - Paso 1
+
+
+Gather con todas las variables que terminan en cuatro dígitos.
+
+```r
+# tidy con los años
+marco_rpae_tidy &lt;- marco_rpae %&gt;% 
+  gather(var, val, matches("_\\d{4}$"))
+```
+
+```
+## Warning: attributes are not identical across measure variables;
+## they will be dropped
+```
+---
+# Paso 2 - Separar
+
+
+```r
+marco_rpae_tidy &lt;- marco_rpae_tidy %&gt;%
+   separate(var, into=c("variable", "year"))
+head(marco_rpae_tidy)
+```
+
+```
+## # A tibble: 6 x 7
+##       rut nro_ine razon_social                   depto variable year    val
+##     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;                          &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt; &lt;dbl&gt;
+## 1   67347     859 Colegio Liceo Beata Imelda        10 ciiu4    2011   8510
+## 2   70340  190505 Raffo Puppo Teresita             NaN ciiu4    2011    NaN
+## 3   73946  847387 Schandy Gabarda Thomas            10 ciiu4    2011    NaN
+## 4 1004845  818971 Gerona Milans Beatriz Alba        10 ciiu4    2011    NaN
+## 5 1007096       0 De Castro Morros Marta Teresa     10 ciiu4    2011    NaN
+## 6 1007273  798452 Mosteiro Cousillas Maria Caro…    10 ciiu4    2011    NaN
+```
+
+---
+# Paso 3 - Spread 
+
+
+```r
+marco_rpae_tidy &lt;- marco_rpae_tidy %&gt;%
+    spread(variable, val)
+head(marco_rpae_tidy)
+```
+
+```
+## # A tibble: 6 x 9
+##       rut nro_ine razon_social        depto year  ciiu4    mimp    po  vtas
+##     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;               &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1   67347     859 Colegio Liceo Beat…    10 2011   8510 701207.  77.9     0
+## 2   70340  190505 Raffo Puppo Teresi…   NaN 2011    NaN    NaN  NaN     NaN
+## 3   73946  847387 Schandy Gabarda Th…    10 2011    NaN    NaN  NaN     NaN
+## 4 1004845  818971 Gerona Milans Beat…    10 2011    NaN    NaN  NaN     NaN
+## 5 1007096       0 De Castro Morros M…    10 2011    NaN    NaN  NaN     NaN
+## 6 1007273  798452 Mosteiro Cousillas…    10 2011    NaN    NaN  NaN     NaN
+```
+
+---
+# Cambiar NaN por NA
+
+
+```r
+sacarNans &lt;- function(x) {
+  if_else(is.nan((x)), NA_real_, x)
+}
+
+marco_rpae_tidy &lt;- marco_rpae_tidy %&gt;%
+  mutate_if(is.numeric, funs(sacarNans(.)))
+```
+
+```
+## Warning: funs() is soft deprecated as of dplyr 0.8.0
+## please use list() instead
+## 
+## # Before:
+## funs(name = f(.)
+## 
+## # After: 
+## list(name = ~f(.))
+## This warning is displayed once per session.
+```
+
+```r
+marco_rpae_tidy
+```
+
+```
+## # A tibble: 2,951,220 x 9
+##        rut nro_ine razon_social       depto year  ciiu4    mimp    po  vtas
+##      &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;              &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1   67347     859 Colegio Liceo Bea…    10 2011   8510 701207.  77.9     0
+##  2   70340  190505 Raffo Puppo Teres…    NA 2011     NA     NA   NA      NA
+##  3   73946  847387 Schandy Gabarda T…    10 2011     NA     NA   NA      NA
+##  4 1004845  818971 Gerona Milans Bea…    10 2011     NA     NA   NA      NA
+##  5 1007096       0 De Castro Morros …    10 2011     NA     NA   NA      NA
+##  6 1007273  798452 Mosteiro Cousilla…    10 2011     NA     NA   NA      NA
+##  7 1007528  709676 Sanjuan Martinez …    NA 2011     NA     NA   NA      NA
+##  8 1012417  709678 Maestro Irigaray …    10 2011     NA     NA   NA      NA
+##  9 1015555  709679 Cesar Cardoso Cam…    10 2011     NA     NA   NA      NA
+## 10 1032308  798453 Goldschmidt Tresz…     9 2011     NA     NA   NA      NA
+## # … with 2,951,210 more rows
+```
     </textarea>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({

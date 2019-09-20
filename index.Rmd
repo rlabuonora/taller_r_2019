@@ -189,3 +189,73 @@ t4a <- gather(table4a,"1999","2000", key="year", value="cases")
 t4b <- gather(table4b,"1999","2000", key="year", value="population")
 left_join(t4a, t4b)
 ```
+
+---
+# Ejercicio RPAE
+
+Abrir archivo
+
+```{r}
+marco_rpae <- readRDS('/home/rlabuonora/bases/confidencial/marco_rpae.rds')
+names(marco_rpae)
+```
+
+---
+Seleccionar campos: 
+
+- rut, ine, razon_social, depto, ventas, personal_ocupado
+
+```{r}
+marco_rpae <- marco_rpae %>% 
+  rename(rut=RUT, nro_ine = INE, razon_social=RSOCIAL, depto=DEPTO) %>%
+  select(rut, nro_ine, razon_social, depto, matches("_20\\d{2}$"), -matches("DEPTO_"))
+```
+
+---
+# Cambiar nombres
+nombre de variables en minúscula
+```{r}
+names(marco_rpae) <- tolower(names(marco_rpae))
+```
+
+---
+#Tidy - Paso 1
+
+
+Gather con todas las variables que terminan en cuatro dígitos.
+```{r}
+# tidy con los años
+marco_rpae_tidy <- marco_rpae %>% 
+  gather(var, val, matches("_\\d{4}$"))
+```
+---
+# Paso 2 - Separar
+
+```{r}
+marco_rpae_tidy <- marco_rpae_tidy %>%
+   separate(var, into=c("variable", "year"))
+head(marco_rpae_tidy)
+```
+
+---
+# Paso 3 - Spread 
+
+```{r}
+marco_rpae_tidy <- marco_rpae_tidy %>%
+    spread(variable, val)
+head(marco_rpae_tidy)
+```
+
+---
+# Cambiar NaN por NA
+
+```{r}
+sacarNans <- function(x) {
+  if_else(is.nan((x)), NA_real_, x)
+}
+
+marco_rpae_tidy <- marco_rpae_tidy %>%
+  mutate_if(is.numeric, funs(sacarNans(.)))
+
+marco_rpae_tidy
+```
