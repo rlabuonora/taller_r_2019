@@ -189,6 +189,63 @@ mutate(flights_sml,
 - `lag()` 
 - `cumsum()`
 
+--
+## Mutate & family
+
+Mutate calcula columnas nuevas
+
+```{r}
+library(dplyr)
+msleep <- read.csv("./data/msleep_ggplot2.csv")
+
+msleep %>%
+  mutate(sleep_new=sleep_total + sleep_rem) %>%
+  head()
+```
+
+# Transmute: 
+
+Igual que mutate pero elimina las columnas no especificadas
+
+```{r}
+msleep %>% 
+  transmute(sleep_new=sleep_rem+sleep_total) %>% 
+  head
+```
+
+# Mutate_if
+Aplica funcione a todas las columnas que cumplen un criterio. 
+
+```{r}
+msleep %>% 
+mutate_if(is.numeric, log2)%>% 
+head()
+```
+
+
+---
+# Mutate_all: 
+
+Aplica funciones a todas las columnas 
+```{r}
+
+msleep %>% 
+  select(sleep_total, sleep_rem) %>%
+  mutate_all(funs(log(.),log2(.))) %>%  
+  names()
+```
+
+---
+# Mutate_at: 
+Aplica funciones a columnas.
+
+```{r}
+msleep %>%
+mutate_at(vars(sleep_total),funs(log(.),log2(.))) %>%
+  names()
+```
+
+
 ---
 ## Bibliografía
 
