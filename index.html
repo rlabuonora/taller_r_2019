@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Data Wrangling</title>
+    <title>R, RStudio y el Tidyverse</title>
     <meta charset="utf-8">
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
@@ -10,414 +10,538 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Data Wrangling
+# R, RStudio y el Tidyverse
 
 ---
 
 
 
 
-##`dplyr`
+## ¿Qué es R?
 
-Funciones para las tareas más comunes:
-
-- `filter`
-- `select`
-- `arrange`
-- `mutate`
-- `summarise`
-- `group_by`
-
----
-# Datos
-
-
-
-```r
-library(nycflights13)
-suppressPackageStartupMessages(library(dplyr))
-flights
-```
-
-```
-## # A tibble: 336,776 x 19
-##     year month   day dep_time sched_dep_time dep_delay arr_time
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;
-##  1  2013     1     1      517            515         2      830
-##  2  2013     1     1      533            529         4      850
-##  3  2013     1     1      542            540         2      923
-##  4  2013     1     1      544            545        -1     1004
-##  5  2013     1     1      554            600        -6      812
-##  6  2013     1     1      554            558        -4      740
-##  7  2013     1     1      555            600        -5      913
-##  8  2013     1     1      557            600        -3      709
-##  9  2013     1     1      557            600        -3      838
-## 10  2013     1     1      558            600        -2      753
-## # … with 336,766 more rows, and 12 more variables: sched_arr_time &lt;int&gt;,
-## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;,
-## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
-## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;
-```
----
-
-# Filter
-
---
-Seleccionar las filas de enero
-
-```r
-dplyr::filter(flights, month == 1)
-```
-
-```
-## # A tibble: 27,004 x 19
-##     year month   day dep_time sched_dep_time dep_delay arr_time
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;
-##  1  2013     1     1      517            515         2      830
-##  2  2013     1     1      533            529         4      850
-##  3  2013     1     1      542            540         2      923
-##  4  2013     1     1      544            545        -1     1004
-##  5  2013     1     1      554            600        -6      812
-##  6  2013     1     1      554            558        -4      740
-##  7  2013     1     1      555            600        -5      913
-##  8  2013     1     1      557            600        -3      709
-##  9  2013     1     1      557            600        -3      838
-## 10  2013     1     1      558            600        -2      753
-## # … with 26,994 more rows, and 12 more variables: sched_arr_time &lt;int&gt;,
-## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;,
-## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
-## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;
-```
-
----
-## Seleccionar las filas de el primer dia de enero
-
-```r
-filter(flights, month == 1, day == 1)
-```
-
-```
-## # A tibble: 842 x 19
-##     year month   day dep_time sched_dep_time dep_delay arr_time
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;
-##  1  2013     1     1      517            515         2      830
-##  2  2013     1     1      533            529         4      850
-##  3  2013     1     1      542            540         2      923
-##  4  2013     1     1      544            545        -1     1004
-##  5  2013     1     1      554            600        -6      812
-##  6  2013     1     1      554            558        -4      740
-##  7  2013     1     1      555            600        -5      913
-##  8  2013     1     1      557            600        -3      709
-##  9  2013     1     1      557            600        -3      838
-## 10  2013     1     1      558            600        -2      753
-## # … with 832 more rows, and 12 more variables: sched_arr_time &lt;int&gt;,
-## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;,
-## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
-## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;
-```
-
---
-
-- Si paso varias condiciones, se combinan como `AND`
-
-
----
-## Condiciones más complejas
- 
-Puedo usar operadores lógicos:
-
-
-```r
-filter(flights, month == 1 &amp; day == 1)
-```
-
-```
-## # A tibble: 842 x 19
-##     year month   day dep_time sched_dep_time dep_delay arr_time
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;
-##  1  2013     1     1      517            515         2      830
-##  2  2013     1     1      533            529         4      850
-##  3  2013     1     1      542            540         2      923
-##  4  2013     1     1      544            545        -1     1004
-##  5  2013     1     1      554            600        -6      812
-##  6  2013     1     1      554            558        -4      740
-##  7  2013     1     1      555            600        -5      913
-##  8  2013     1     1      557            600        -3      709
-##  9  2013     1     1      557            600        -3      838
-## 10  2013     1     1      558            600        -2      753
-## # … with 832 more rows, and 12 more variables: sched_arr_time &lt;int&gt;,
-## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;,
-## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
-## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;
-```
-
----
-## Condiciones más complejas (2)
-
-
-```r
-filter(flights, month == 1 | month == 2)
-```
-
-```
-## # A tibble: 51,955 x 19
-##     year month   day dep_time sched_dep_time dep_delay arr_time
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;
-##  1  2013     1     1      517            515         2      830
-##  2  2013     1     1      533            529         4      850
-##  3  2013     1     1      542            540         2      923
-##  4  2013     1     1      544            545        -1     1004
-##  5  2013     1     1      554            600        -6      812
-##  6  2013     1     1      554            558        -4      740
-##  7  2013     1     1      555            600        -5      913
-##  8  2013     1     1      557            600        -3      709
-##  9  2013     1     1      557            600        -3      838
-## 10  2013     1     1      558            600        -2      753
-## # … with 51,945 more rows, and 12 more variables: sched_arr_time &lt;int&gt;,
-## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;,
-## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
-## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;
-```
-
-```r
-# Es lo mismo que
-
-filter(flights, month %in% c(1, 2))
-```
-
-```
-## # A tibble: 51,955 x 19
-##     year month   day dep_time sched_dep_time dep_delay arr_time
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;
-##  1  2013     1     1      517            515         2      830
-##  2  2013     1     1      533            529         4      850
-##  3  2013     1     1      542            540         2      923
-##  4  2013     1     1      544            545        -1     1004
-##  5  2013     1     1      554            600        -6      812
-##  6  2013     1     1      554            558        -4      740
-##  7  2013     1     1      555            600        -5      913
-##  8  2013     1     1      557            600        -3      709
-##  9  2013     1     1      557            600        -3      838
-## 10  2013     1     1      558            600        -2      753
-## # … with 51,945 more rows, and 12 more variables: sched_arr_time &lt;int&gt;,
-## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;,
-## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
-## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;
-```
-
-- Cuidado! 
-`&amp;&amp;` es parecido a `&amp;`, `==` no tiene nada que ver con `=`.
+* Paquete estadístico (SPSS, STATA, Excel(?))
+* Open Source
+* Ecosistema de herramientas (RStudio, dplyr)
 
 ---
 
-# Ejercicios:
+## ¿Por qué R?
 
-- Encontrar los vuelos que:
+* Análisis reproducible
+* Ecosistema open source
 
-  - Tuvieron un atraso en la llegada de dos horas o más
-  - Volaron a Houston (IAH o HOU)
-  - Son de United, American, or Delta
-  - Salieron en invierno (Junio, Julio, Agosto)
-  - Salieron entre medianoche y las 6am
+---
+
+## Ejemplo de eco sistema
+
+* Stack Overflow
+* Markdown
+* Shiny
+
+---
+## Ejemplo de análisis reproducible
+
+* Importar un csv
+* Armar un reporte
+* Algo de texto intercalado
+* Tablas/Cruces
+* Graficos
+* Sale a pdf
+* Cambiar un dato en el csv
+* Volver a correr el reporte
 
 
-- Investigar cómo funciona `between`. Usarla para alguna de las preguntas anteriores.
+---
+## Scripts
+
+* Es la clave para que el análisis sea reproducible
+* Tiene costos fijos, pero no es tan difícil (este ejemplo lleva X líneas de código)
+* Es más gratificante
+
 
 
 ---
 
-##`select`
+## Rstudio
 
-Selecciona columnas.
+- Es una ambiente de desarrollo para R.
 
-
-```r
-msleep &lt;- read.csv("./data/msleep_ggplot2.csv")
-head(msleep)
-```
-
-```
-##                         name      genus  vore        order conservation
-## 1                    Cheetah   Acinonyx carni    Carnivora           lc
-## 2                 Owl monkey      Aotus  omni     Primates         &lt;NA&gt;
-## 3            Mountain beaver Aplodontia herbi     Rodentia           nt
-## 4 Greater short-tailed shrew    Blarina  omni Soricomorpha           lc
-## 5                        Cow        Bos herbi Artiodactyla domesticated
-## 6           Three-toed sloth   Bradypus herbi       Pilosa         &lt;NA&gt;
-##   sleep_total sleep_rem sleep_cycle awake brainwt  bodywt
-## 1        12.1        NA          NA  11.9      NA  50.000
-## 2        17.0       1.8          NA   7.0 0.01550   0.480
-## 3        14.4       2.4          NA   9.6      NA   1.350
-## 4        14.9       2.3   0.1333333   9.1 0.00029   0.019
-## 5         4.0       0.7   0.6666667  20.0 0.42300 600.000
-## 6        14.4       2.2   0.7666667   9.6      NA   3.850
-```
-
----
-
-```r
-head(select(msleep, name, sleep_total))
-```
-
-```
-##                         name sleep_total
-## 1                    Cheetah        12.1
-## 2                 Owl monkey        17.0
-## 3            Mountain beaver        14.4
-## 4 Greater short-tailed shrew        14.9
-## 5                        Cow         4.0
-## 6           Three-toed sloth        14.4
-```
-
----
-##`select` (2)
-
-
-```r
-head(select(msleep, -name))
-```
-
-```
-##        genus  vore        order conservation sleep_total sleep_rem
-## 1   Acinonyx carni    Carnivora           lc        12.1        NA
-## 2      Aotus  omni     Primates         &lt;NA&gt;        17.0       1.8
-## 3 Aplodontia herbi     Rodentia           nt        14.4       2.4
-## 4    Blarina  omni Soricomorpha           lc        14.9       2.3
-## 5        Bos herbi Artiodactyla domesticated         4.0       0.7
-## 6   Bradypus herbi       Pilosa         &lt;NA&gt;        14.4       2.2
-##   sleep_cycle awake brainwt  bodywt
-## 1          NA  11.9      NA  50.000
-## 2          NA   7.0 0.01550   0.480
-## 3          NA   9.6      NA   1.350
-## 4   0.1333333   9.1 0.00029   0.019
-## 5   0.6666667  20.0 0.42300 600.000
-## 6   0.7666667   9.6      NA   3.850
-```
-
----
-##`select` (3)
-
-
-```r
-head(select(msleep, starts_with("sl")))
-```
-
-```
-##   sleep_total sleep_rem sleep_cycle
-## 1        12.1        NA          NA
-## 2        17.0       1.8          NA
-## 3        14.4       2.4          NA
-## 4        14.9       2.3   0.1333333
-## 5         4.0       0.7   0.6666667
-## 6        14.4       2.2   0.7666667
-```
-
----
-# Otros helpers:
-
- * `ends_with`
- * `contains`
- * `matches`
- * `one_of`
- 
----
-
-## Ejercicios
-
-- Todas las formas posibles de seleccionar `dep_time`, `dep_delay`, `arr_time`, y `arr_delay` de `flights`.
-- Investigar que hace one_of(), y como lo usarían con un vector: 
-
-`vars &lt;- c("year", "month", "day", "dep_delay", "arr_delay")`
-
-
----
-
-## Mutate
-
-
-```r
-flights_sml &lt;- select(flights, 
-  year:day, 
-  ends_with("delay"), 
-  distance, 
-  air_time
-)
-```
----
-## Mutate
-
-
-```r
-mutate(flights_sml,
-  gain = dep_delay - arr_delay,
-  speed = distance / air_time * 60
-)
-```
-
-```
-## # A tibble: 336,776 x 9
-##     year month   day dep_delay arr_delay distance air_time  gain speed
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-##  1  2013     1     1         2        11     1400      227    -9  370.
-##  2  2013     1     1         4        20     1416      227   -16  374.
-##  3  2013     1     1         2        33     1089      160   -31  408.
-##  4  2013     1     1        -1       -18     1576      183    17  517.
-##  5  2013     1     1        -6       -25      762      116    19  394.
-##  6  2013     1     1        -4        12      719      150   -16  288.
-##  7  2013     1     1        -5        19     1065      158   -24  404.
-##  8  2013     1     1        -3       -14      229       53    11  259.
-##  9  2013     1     1        -3        -8      944      140     5  405.
-## 10  2013     1     1        -2         8      733      138   -10  319.
-## # … with 336,766 more rows
-```
-
----
-
-
-## Mutate (2)
-Las funciones que usamos dentro de `mutate` deben estar vectorizadas: toman un vector como argumento y devuelven un vector del mismo tamaño como resultado:
-
-
-```r
-mutate(flights_sml,
-  gain = dep_delay - arr_delay,
-  speed = distance / air_time * 60
-)
-```
-
-```
-## # A tibble: 336,776 x 9
-##     year month   day dep_delay arr_delay distance air_time  gain speed
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-##  1  2013     1     1         2        11     1400      227    -9  370.
-##  2  2013     1     1         4        20     1416      227   -16  374.
-##  3  2013     1     1         2        33     1089      160   -31  408.
-##  4  2013     1     1        -1       -18     1576      183    17  517.
-##  5  2013     1     1        -6       -25      762      116    19  394.
-##  6  2013     1     1        -4        12      719      150   -16  288.
-##  7  2013     1     1        -5        19     1065      158   -24  404.
-##  8  2013     1     1        -3       -14      229       53    11  259.
-##  9  2013     1     1        -3        -8      944      140     5  405.
-## 10  2013     1     1        -2         8      733      138   -10  319.
-## # … with 336,766 more rows
-```
-
-- `dep_delay` y `arr_delay` son vectores
-- ¿`air_time * 60`?
-
----
-## Funciones Útiles
-
-- `lead()`
-- `lag()` 
-- `cumsum()`
-
----
-## Bibliografía
-
-&lt;div align="left"&gt;
-&lt;img src="imgs/r4ds.png" width=250 height=375&gt;
+&lt;div align="center"&gt;
+&lt;img src="imgs/Rstudio.png"&gt;
 &lt;/div&gt;
+
+---
+- Tiene varias herramientas que nos facilitan la interacción con R:
+  - Consola
+  - Environment
+  - Editor de texto
+  - ...
+---
+
+## Consola
+
+- Es la forma más básica de interactuar con R
+
+&lt;div align="center"&gt;
+&lt;img src="imgs/consola.png"&gt;
+&lt;/div&gt;
+
+
+
+```r
+6*8
+```
+
+```
+## [1] 48
+```
+
+```r
+2^6
+```
+
+```
+## [1] 64
+```
+  
+* Arriba y abajo para scrollear los comandos
+
+---
+# Editor
+
+
+&lt;div align="center"&gt;
+&lt;img src="imgs/editor.png"&gt;
+&lt;/div&gt;
+
+---
+# Ambiente
+
+&lt;div align="center"&gt;
+&lt;img src="imgs/environment.png"&gt;
+&lt;/div&gt;
+
+---
+## Funciones predefinidas
+
+
+
+```r
+sqrt(2)
+```
+
+```
+## [1] 1.414214
+```
+
+---
+## Variables
+
+* Sirven para almacenar resultados intermedios y organizar los programas:
+
+
+```r
+RaizDeDos &lt;- sqrt(2)
+HorasPorAnio = 365 * 60
+```
+
+* En Excel y Stata no existen (!)
+
+---
+## Ambiente (environment)
+
+* Es el conjunto de objetos disponibles a través de variables
+
+```r
+ls()
+```
+
+```
+## [1] "HorasPorAnio" "RaizDeDos"
+```
+
+---
+## Funciones definidas por usuarios
+
+* Es el conjunto de objetos disponibles a través de variables:
+
+
+```r
+MyAbs &lt;- function(x) {
+    if ( x &lt; 0 ) -x
+    else x
+}
+MyAbs(-1)
+```
+
+```
+## [1] 1
+```
+
+```r
+MyAbs(2)
+```
+
+```
+## [1] 2
+```
+
+---
+
+## Data frames
+
+Son similares a planillas de excel (tienen filas y columnas)
+
+```r
+who &lt;- read.csv("data/WHO.csv")
+head(who$Country) # 
+```
+
+```
+## [1] Afghanistan         Albania             Algeria            
+## [4] Andorra             Angola              Antigua and Barbuda
+## 194 Levels: Afghanistan Albania Algeria Andorra ... Zimbabwe
+```
+
+* `head` es una función que me muestra los primeros valores de un vector
+
+```r
+head(who$Country) 
+```
+
+```
+## [1] Afghanistan         Albania             Algeria            
+## [4] Andorra             Angola              Antigua and Barbuda
+## 194 Levels: Afghanistan Albania Algeria Andorra ... Zimbabwe
+```
+
+
+---
+## Importar archivos
+
+
+```r
+who &lt;- read.csv("data/WHO.csv")
+# subset
+who_euro &lt;- subset(who, Region=="Europe")
+# salvar como csv
+write.csv(who_euro, file="data/euro.csv")
+```
+
+---
+##Info sobre el data frame
+
+
+```r
+nrow(who)
+```
+
+```
+## [1] 194
+```
+
+```r
+nrow(who_euro)
+```
+
+```
+## [1] 53
+```
+
+```r
+ncol(who)
+```
+
+```
+## [1] 13
+```
+
+```r
+names(who)
+```
+
+```
+##  [1] "Country"                       "Region"                       
+##  [3] "Population"                    "Under15"                      
+##  [5] "Over60"                        "FertilityRate"                
+##  [7] "LifeExpectancy"                "ChildMortality"               
+##  [9] "CellularSubscribers"           "LiteracyRate"                 
+## [11] "GNI"                           "PrimarySchoolEnrollmentMale"  
+## [13] "PrimarySchoolEnrollmentFemale"
+```
+
+
+---
+## Estadísticas descriptivas
+
+
+```r
+summary(who)
+```
+
+```
+##                 Country                      Region     Population     
+##  Afghanistan        :  1   Africa               :46   Min.   :      1  
+##  Albania            :  1   Americas             :35   1st Qu.:   1696  
+##  Algeria            :  1   Eastern Mediterranean:22   Median :   7790  
+##  Andorra            :  1   Europe               :53   Mean   :  36360  
+##  Angola             :  1   South-East Asia      :11   3rd Qu.:  24535  
+##  Antigua and Barbuda:  1   Western Pacific      :27   Max.   :1390000  
+##  (Other)            :188                                               
+##     Under15          Over60      FertilityRate   LifeExpectancy 
+##  Min.   :13.12   Min.   : 0.81   Min.   :1.260   Min.   :47.00  
+##  1st Qu.:18.72   1st Qu.: 5.20   1st Qu.:1.835   1st Qu.:64.00  
+##  Median :28.65   Median : 8.53   Median :2.400   Median :72.50  
+##  Mean   :28.73   Mean   :11.16   Mean   :2.941   Mean   :70.01  
+##  3rd Qu.:37.75   3rd Qu.:16.69   3rd Qu.:3.905   3rd Qu.:76.00  
+##  Max.   :49.99   Max.   :31.92   Max.   :7.580   Max.   :83.00  
+##                                  NA's   :11                     
+##  ChildMortality    CellularSubscribers  LiteracyRate        GNI       
+##  Min.   :  2.200   Min.   :  2.57      Min.   :31.10   Min.   :  340  
+##  1st Qu.:  8.425   1st Qu.: 63.57      1st Qu.:71.60   1st Qu.: 2335  
+##  Median : 18.600   Median : 97.75      Median :91.80   Median : 7870  
+##  Mean   : 36.149   Mean   : 93.64      Mean   :83.71   Mean   :13321  
+##  3rd Qu.: 55.975   3rd Qu.:120.81      3rd Qu.:97.85   3rd Qu.:17558  
+##  Max.   :181.600   Max.   :196.41      Max.   :99.80   Max.   :86440  
+##                    NA's   :10          NA's   :91      NA's   :32     
+##  PrimarySchoolEnrollmentMale PrimarySchoolEnrollmentFemale
+##  Min.   : 37.20              Min.   : 32.50               
+##  1st Qu.: 87.70              1st Qu.: 87.30               
+##  Median : 94.70              Median : 95.10               
+##  Mean   : 90.85              Mean   : 89.63               
+##  3rd Qu.: 98.10              3rd Qu.: 97.90               
+##  Max.   :100.00              Max.   :100.00               
+##  NA's   :93                  NA's   :93
+```
+
+---
+
+## Vectores
+
+* Son la base de los data frames (un data frame es una lista de vectores (?))
+* Muchas funciones trabajan con vectores
+* Para crear un vector de números uso la función *c*:
+
+
+```r
+vec &lt;- c(2, 3, 5, 8, 13)
+vec
+```
+
+```
+## [1]  2  3  5  8 13
+```
+- Accedo por el índice a cada componente
+
+```r
+vec[3]
+```
+
+```
+## [1] 5
+```
+
+---
+
+## Vectores (2)
+
+* Pueden ser de texto
+
+```r
+counts &lt;- c("Brazil", "China", "India", "Switzerland", "USA")
+life_exp&lt;- c(74, 76, 65, 83, 79)
+```
+* Para crear un data frame a partir de vectores:
+
+```r
+country_data &lt;- data.frame(counts, life_exp)
+str(country_data)
+```
+
+```
+## 'data.frame':	5 obs. of  2 variables:
+##  $ counts  : Factor w/ 5 levels "Brazil","China",..: 1 2 3 4 5
+##  $ life_exp: num  74 76 65 83 79
+```
+
+---
+##Vectores (3) -Operador $
+
+* El operador *$* me permite acceder a un item de una lista
+
+```r
+country_data$pop &lt;- c(199000, 1390000, 1240000, 7997, 318000)
+str(country_data)
+```
+
+```
+## 'data.frame':	5 obs. of  3 variables:
+##  $ counts  : Factor w/ 5 levels "Brazil","China",..: 1 2 3 4 5
+##  $ life_exp: num  74 76 65 83 79
+##  $ pop     : num  199000 1390000 1240000 7997 318000
+```
+* ¡Cuidado con el orden!
+
+---
+
+
+## Visualización
+
+- ¿Cuál es la relación entre el PIB y la tasa de fertilidad?
+
+```r
+plot(who$GNI, who$FertilityRate)
+```
+
+![](index_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
+
+
+---
+## Subset
+
+Hay dos países que no siguen la relacion negativa:
+
+```r
+outliers &lt;- subset(who, GNI &gt; 80000 | (FertilityRate &gt; 5 &amp; GNI &gt; 20000))
+outliers[c("Country", "GNI", "FertilityRate")]
+```
+
+```
+##               Country   GNI FertilityRate
+## 56  Equatorial Guinea 25620          5.04
+## 138             Qatar 86440          2.06
+```
+
+
+---
+##Histogramas
+
+
+```r
+hist(who$CellularSubscribers)
+```
+
+![](index_files/figure-html/unnamed-chunk-18-1.png)&lt;!-- --&gt;
+
+
+---
+##Boxplots
+
+
+```r
+boxplot(who$LifeExpectancy ~ who$Region)
+```
+
+![](index_files/figure-html/unnamed-chunk-19-1.png)&lt;!-- --&gt;
+
+```r
+boxplot(who$LifeExpectancy ~ who$Region, xlab="", ylab="Life Expectancy", main="Life Expectancy by Region")
+```
+
+![](index_files/figure-html/unnamed-chunk-19-2.png)&lt;!-- --&gt;
+
+---
+##Importar funcionalidad
+
+La función library permite importar "bibliotecas"
+
+
+```r
+## install.packages("readstata13")
+library(readstata13)
+writing &lt;- readstata13::read.dta13("data/writing.dta")
+head(writing)
+```
+
+```
+##   id preS preP preC preE postS postP postC postE
+## 1  A   11    2    1    2    23     5     2     6
+## 2  B    8    1    1    0     9     5     1     1
+## 3  C   11    1    0    0    24     4     1     1
+## 4  D    8    1    0    0    20     6     2     5
+## 5  E    6    1    0    1    16     2     1     2
+## 6  F    8    1    0    2    18     5     1     1
+```
+
+
+---
+## Tidyverse
+
+- Es un conjunto de librerías para tareas comunes en análisis de datos
+- Es un dialecto de R
+
+
+---
+
+
+##`%&gt;%`
+
+Sirve para combinar funciones y poder leerlas de izquierda a derecha.
+
+
+```r
+x %&gt;% f(y) 
+#es equivalente a 
+f(x,y)
+```
+
+---
+
+##`%&gt;%` (2)
+
+El nombre de los omnívoros que duermen más de 15 horas:
+
+
+```r
+select(filter(msleep, sleep_total &gt; 15), name)
+```
+
+```
+## # A tibble: 12 x 1
+##    name                          
+##    &lt;chr&gt;                         
+##  1 Owl monkey                    
+##  2 Long-nosed armadillo          
+##  3 North American Opossum        
+##  4 Big brown bat                 
+##  5 Thick-tailed opposum          
+##  6 Little brown bat              
+##  7 Tiger                         
+##  8 Giant armadillo               
+##  9 Arctic ground squirrel        
+## 10 Golden-mantled ground squirrel
+## 11 Eastern american chipmunk     
+## 12 Tenrec
+```
+
+---
+
+Es equivalente a:
+
+
+```r
+msleep %&gt;%
+  filter(sleep_total &gt; 15) %&gt;%
+  select(name)
+```
+
+```
+## # A tibble: 12 x 1
+##    name                          
+##    &lt;chr&gt;                         
+##  1 Owl monkey                    
+##  2 Long-nosed armadillo          
+##  3 North American Opossum        
+##  4 Big brown bat                 
+##  5 Thick-tailed opposum          
+##  6 Little brown bat              
+##  7 Tiger                         
+##  8 Giant armadillo               
+##  9 Arctic ground squirrel        
+## 10 Golden-mantled ground squirrel
+## 11 Eastern american chipmunk     
+## 12 Tenrec
+```
     </textarea>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
