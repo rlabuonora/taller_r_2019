@@ -578,6 +578,72 @@ marco_rpae_tidy
 ## 10 1032308  798453 Goldschmidt Tresz…     9 2011     NA     NA   NA      NA
 ## # … with 2,951,210 more rows
 ```
+
+# Votacion
+
+Un experimento de votación con varios "grupos" (hawthorne, civicduty, neighbors, self)
+
+```r
+gerber &lt;- readRDS("data/gerber.rds")
+str(gerber)
+```
+
+```
+## 'data.frame':	344084 obs. of  8 variables:
+##  $ sex      : int  0 1 1 1 0 1 0 0 1 0 ...
+##  $ yob      : int  1941 1947 1982 1950 1951 1959 1956 1981 1968 1967 ...
+##  $ voting   : int  0 0 1 1 1 1 1 0 0 0 ...
+##  $ hawthorne: int  0 0 1 1 1 0 0 0 0 0 ...
+##  $ civicduty: int  1 1 0 0 0 0 0 0 0 0 ...
+##  $ neighbors: int  0 0 0 0 0 0 0 0 0 0 ...
+##  $ self     : int  0 0 0 0 0 0 0 0 0 0 ...
+##  $ control  : int  0 0 0 0 0 1 1 1 1 1 ...
+```
+
+---
+Quiero sacar la proporción de cuántos votan por grupo.
+Votacion
+
+
+¿Cuál sería la forma tidy de este juego de datos?
+
+
+```r
+gerber_tidy &lt;- gerber %&gt;% 
+  gather(group, sacar, hawthorne, civicduty, neighbors, self) 
+head(gerber_tidy)
+```
+
+```
+##   sex  yob voting control     group sacar
+## 1   0 1941      0       0 hawthorne     0
+## 2   1 1947      0       0 hawthorne     0
+## 3   1 1982      1       0 hawthorne     1
+## 4   1 1950      1       0 hawthorne     1
+## 5   0 1951      1       0 hawthorne     1
+## 6   1 1959      1       1 hawthorne     0
+```
+---
+# Votacion
+
+
+```r
+gerber_tidy %&gt;%
+  filter(sacar == 1) %&gt;%
+  select(-sacar) %&gt;%
+  group_by(group) %&gt;%
+  summarize(mean_voting = mean(voting))
+```
+
+```
+## # A tibble: 4 x 2
+##   group     mean_voting
+##   &lt;chr&gt;           &lt;dbl&gt;
+## 1 civicduty       0.315
+## 2 hawthorne       0.322
+## 3 neighbors       0.378
+## 4 self            0.345
+```
     </textarea>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({

@@ -259,3 +259,34 @@ marco_rpae_tidy <- marco_rpae_tidy %>%
 
 marco_rpae_tidy
 ```
+
+# Votacion
+
+Un experimento de votación con varios "grupos" (hawthorne, civicduty, neighbors, self)
+```{r}
+gerber <- readRDS("data/gerber.rds")
+str(gerber)
+```
+
+---
+Quiero sacar la proporción de cuántos votan por grupo.
+Votacion
+
+
+¿Cuál sería la forma tidy de este juego de datos?
+
+```{r}
+gerber_tidy <- gerber %>% 
+  gather(group, sacar, hawthorne, civicduty, neighbors, self) 
+head(gerber_tidy)
+```
+---
+# Votacion
+
+```{r}
+gerber_tidy %>%
+  filter(sacar == 1) %>%
+  select(-sacar) %>%
+  group_by(group) %>%
+  summarize(mean_voting = mean(voting))
+```
