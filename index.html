@@ -1,425 +1,304 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Data Wrangling</title>
+    <title>Gramática de Gráficos</title>
     <meta charset="utf-8">
-    <link href="libs/remark-css/default.css" rel="stylesheet" />
-    <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
   </head>
   <body>
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Data Wrangling
+# Gramática de Gráficos
+## ggplot
+### 2019/08/12
+
+---
+
+class: center, middle
+
+# Gramática
+
+
+
+
+&gt; Es el conjunto de reglas estructurales que gobiernan la composición de oraciones y palabras e un lenguaje.
+
+---
+
+class: center, middle
+
+Una gramática es el tipo de cosas que hay en un lenguaje y las relaciones que tiene que haber entre ellas para generar sentencias válidas en cierto lenguaje (aunque no necesariamente significativas)
+
+---
+
+class: center, middle
+
+En visualización, se refiere a los __elementos__ que hay en un gráfico (puntos, líneas, texto, etc.) y cómo se __interrelacionan__ entre sí.
+
+---
+
+# Ejemplo
+
+&lt;blockquote class="twitter-tweet"&gt;&lt;p lang="es" dir="ltr"&gt;Esta es la verdad de los números de empleo: desde junio 2014 hasta junio 2019 se perdieron 67 mil empleos. Nada ganamos con hacernos los distraídos, nada ganamos jugando con los números. La realidad es terca. A los problemas hay que mirarlos a los ojos, reconocerlos y encararlos. &lt;a href="https://t.co/b7fh7xTePq"&gt;pic.twitter.com/b7fh7xTePq&lt;/a&gt;&lt;/p&gt;&amp;mdash; Ernesto Talvi (@ernesto_talvi) &lt;a href="https://twitter.com/ernesto_talvi/status/1159857066829369344?ref_src=twsrc%5Etfw"&gt;August 9, 2019&lt;/a&gt;&lt;/blockquote&gt; &lt;script async src="https://platform.twitter.com/widgets.js" charset="utf-8"&gt;&lt;/script&gt;
+
 
 ---
 
 
 
+# Elementos visuales 
+--
 
-##`dplyr`
+![](./talvi.jpeg)
 
-Funciones para las tareas más comunes:
+--
 
-- `filter`
-- `select`
-- `arrange`
-- `mutate`
-- `summarise`
-- `group_by`
+- Dos rectángulos rojos.
 
 ---
+# Mapeos estéticos 
+
+![](./talvi.jpeg)
+
+--
+
+- El alto de la barra mide la cantidad de empleados en dos momentos del tiempo.
+
+
+---
+
 # Datos
 
-
-
-```r
-library(nycflights13)
-suppressPackageStartupMessages(library(dplyr))
-flights
-```
-
-```
-## # A tibble: 336,776 x 19
-##     year month   day dep_time sched_dep_time dep_delay arr_time
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;
-##  1  2013     1     1      517            515         2      830
-##  2  2013     1     1      533            529         4      850
-##  3  2013     1     1      542            540         2      923
-##  4  2013     1     1      544            545        -1     1004
-##  5  2013     1     1      554            600        -6      812
-##  6  2013     1     1      554            558        -4      740
-##  7  2013     1     1      555            600        -5      913
-##  8  2013     1     1      557            600        -3      709
-##  9  2013     1     1      557            600        -3      838
-## 10  2013     1     1      558            600        -2      753
-## # … with 336,766 more rows, and 12 more variables: sched_arr_time &lt;int&gt;,
-## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;,
-## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
-## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;
-```
----
-
-# Filter
-
---
-Seleccionar las filas de enero
-
-```r
-dplyr::filter(flights, month == 1)
-```
-
-```
-## # A tibble: 27,004 x 19
-##     year month   day dep_time sched_dep_time dep_delay arr_time
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;
-##  1  2013     1     1      517            515         2      830
-##  2  2013     1     1      533            529         4      850
-##  3  2013     1     1      542            540         2      923
-##  4  2013     1     1      544            545        -1     1004
-##  5  2013     1     1      554            600        -6      812
-##  6  2013     1     1      554            558        -4      740
-##  7  2013     1     1      555            600        -5      913
-##  8  2013     1     1      557            600        -3      709
-##  9  2013     1     1      557            600        -3      838
-## 10  2013     1     1      558            600        -2      753
-## # … with 26,994 more rows, and 12 more variables: sched_arr_time &lt;int&gt;,
-## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;,
-## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
-## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;
-```
-
----
-## Seleccionar las filas de el primer dia de enero
-
-```r
-filter(flights, month == 1, day == 1)
-```
-
-```
-## # A tibble: 842 x 19
-##     year month   day dep_time sched_dep_time dep_delay arr_time
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;
-##  1  2013     1     1      517            515         2      830
-##  2  2013     1     1      533            529         4      850
-##  3  2013     1     1      542            540         2      923
-##  4  2013     1     1      544            545        -1     1004
-##  5  2013     1     1      554            600        -6      812
-##  6  2013     1     1      554            558        -4      740
-##  7  2013     1     1      555            600        -5      913
-##  8  2013     1     1      557            600        -3      709
-##  9  2013     1     1      557            600        -3      838
-## 10  2013     1     1      558            600        -2      753
-## # … with 832 more rows, and 12 more variables: sched_arr_time &lt;int&gt;,
-## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;,
-## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
-## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;
-```
-
 --
 
-- Si paso varias condiciones, se combinan como `AND`
-
-
----
-## Condiciones más complejas
- 
-Puedo usar operadores lógicos:
-
-
 ```r
-filter(flights, month == 1 &amp; day == 1)
-```
-
-```
-## # A tibble: 842 x 19
-##     year month   day dep_time sched_dep_time dep_delay arr_time
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;
-##  1  2013     1     1      517            515         2      830
-##  2  2013     1     1      533            529         4      850
-##  3  2013     1     1      542            540         2      923
-##  4  2013     1     1      544            545        -1     1004
-##  5  2013     1     1      554            600        -6      812
-##  6  2013     1     1      554            558        -4      740
-##  7  2013     1     1      555            600        -5      913
-##  8  2013     1     1      557            600        -3      709
-##  9  2013     1     1      557            600        -3      838
-## 10  2013     1     1      558            600        -2      753
-## # … with 832 more rows, and 12 more variables: sched_arr_time &lt;int&gt;,
-## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;,
-## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
-## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;
-```
-
----
-## Condiciones más complejas (2)
-
-
-```r
-filter(flights, month == 1 | month == 2)
-```
-
-```
-## # A tibble: 51,955 x 19
-##     year month   day dep_time sched_dep_time dep_delay arr_time
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;
-##  1  2013     1     1      517            515         2      830
-##  2  2013     1     1      533            529         4      850
-##  3  2013     1     1      542            540         2      923
-##  4  2013     1     1      544            545        -1     1004
-##  5  2013     1     1      554            600        -6      812
-##  6  2013     1     1      554            558        -4      740
-##  7  2013     1     1      555            600        -5      913
-##  8  2013     1     1      557            600        -3      709
-##  9  2013     1     1      557            600        -3      838
-## 10  2013     1     1      558            600        -2      753
-## # … with 51,945 more rows, and 12 more variables: sched_arr_time &lt;int&gt;,
-## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;,
-## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
-## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;
-```
-
-```r
-# Es lo mismo que
-
-filter(flights, month %in% c(1, 2))
-```
-
-```
-## # A tibble: 51,955 x 19
-##     year month   day dep_time sched_dep_time dep_delay arr_time
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;
-##  1  2013     1     1      517            515         2      830
-##  2  2013     1     1      533            529         4      850
-##  3  2013     1     1      542            540         2      923
-##  4  2013     1     1      544            545        -1     1004
-##  5  2013     1     1      554            600        -6      812
-##  6  2013     1     1      554            558        -4      740
-##  7  2013     1     1      555            600        -5      913
-##  8  2013     1     1      557            600        -3      709
-##  9  2013     1     1      557            600        -3      838
-## 10  2013     1     1      558            600        -2      753
-## # … with 51,945 more rows, and 12 more variables: sched_arr_time &lt;int&gt;,
-## #   arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;, tailnum &lt;chr&gt;,
-## #   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
-## #   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;
-```
-
-- Cuidado! 
-`&amp;&amp;` es parecido a `&amp;`, `==` no tiene nada que ver con `=`.
-
----
-
-# Ejercicios:
-
-- Encontrar los vuelos que:
-
-  - Tuvieron un atraso en la llegada de dos horas o más
-  - Volaron a Houston (IAH o HOU)
-  - Son de United, American, or Delta
-  - Salieron en invierno (Junio, Julio, Agosto)
-  - Salieron entre medianoche y las 6am
-
-
-- Investigar cómo funciona `between`. Usarla para alguna de las preguntas anteriores.
-
-
----
-
-##`select`
-
-Selecciona columnas.
-
-
-```r
-msleep &lt;- read.csv("./data/msleep_ggplot2.csv")
-head(msleep)
-```
-
-```
-##                         name      genus  vore        order conservation
-## 1                    Cheetah   Acinonyx carni    Carnivora           lc
-## 2                 Owl monkey      Aotus  omni     Primates         &lt;NA&gt;
-## 3            Mountain beaver Aplodontia herbi     Rodentia           nt
-## 4 Greater short-tailed shrew    Blarina  omni Soricomorpha           lc
-## 5                        Cow        Bos herbi Artiodactyla domesticated
-## 6           Three-toed sloth   Bradypus herbi       Pilosa         &lt;NA&gt;
-##   sleep_total sleep_rem sleep_cycle awake brainwt  bodywt
-## 1        12.1        NA          NA  11.9      NA  50.000
-## 2        17.0       1.8          NA   7.0 0.01550   0.480
-## 3        14.4       2.4          NA   9.6      NA   1.350
-## 4        14.9       2.3   0.1333333   9.1 0.00029   0.019
-## 5         4.0       0.7   0.6666667  20.0 0.42300 600.000
-## 6        14.4       2.2   0.7666667   9.6      NA   3.850
-```
-
----
-
-```r
-head(select(msleep, name, sleep_total))
-```
-
-```
-##                         name sleep_total
-## 1                    Cheetah        12.1
-## 2                 Owl monkey        17.0
-## 3            Mountain beaver        14.4
-## 4 Greater short-tailed shrew        14.9
-## 5                        Cow         4.0
-## 6           Three-toed sloth        14.4
-```
-
----
-##`select` (2)
-
-
-```r
-head(select(msleep, -name))
-```
-
-```
-##        genus  vore        order conservation sleep_total sleep_rem
-## 1   Acinonyx carni    Carnivora           lc        12.1        NA
-## 2      Aotus  omni     Primates         &lt;NA&gt;        17.0       1.8
-## 3 Aplodontia herbi     Rodentia           nt        14.4       2.4
-## 4    Blarina  omni Soricomorpha           lc        14.9       2.3
-## 5        Bos herbi Artiodactyla domesticated         4.0       0.7
-## 6   Bradypus herbi       Pilosa         &lt;NA&gt;        14.4       2.2
-##   sleep_cycle awake brainwt  bodywt
-## 1          NA  11.9      NA  50.000
-## 2          NA   7.0 0.01550   0.480
-## 3          NA   9.6      NA   1.350
-## 4   0.1333333   9.1 0.00029   0.019
-## 5   0.6666667  20.0 0.42300 600.000
-## 6   0.7666667   9.6      NA   3.850
-```
-
----
-##`select` (3)
-
-
-```r
-head(select(msleep, starts_with("sl")))
-```
-
-```
-##   sleep_total sleep_rem sleep_cycle
-## 1        12.1        NA          NA
-## 2        17.0       1.8          NA
-## 3        14.4       2.4          NA
-## 4        14.9       2.3   0.1333333
-## 5         4.0       0.7   0.6666667
-## 6        14.4       2.2   0.7666667
-```
-
----
-# Otros helpers:
-
- * `ends_with`
- * `contains`
- * `matches`
- * `one_of`
- 
----
-
-## Ejercicios
-
-- Todas las formas posibles de seleccionar `dep_time`, `dep_delay`, `arr_time`, y `arr_delay` de `flights`.
-- Investigar que hace one_of(), y como lo usarían con un vector: 
-
-`vars &lt;- c("year", "month", "day", "dep_delay", "arr_delay")`
-
-
----
-
-## Mutate
-
-
-```r
-flights_sml &lt;- select(flights, 
-  year:day, 
-  ends_with("delay"), 
-  distance, 
-  air_time
+empleo &lt;- tibble(
+  ocupados = c(1654, 1586),
+  fecha = c('jun-14', 'jun-19'),
 )
+empleo
 ```
+
+```
+## # A tibble: 2 x 2
+##   ocupados fecha 
+##      &lt;dbl&gt; &lt;chr&gt; 
+## 1     1654 jun-14
+## 2     1586 jun-19
+```
+
 ---
-## Mutate
+# Ggplot()
+
+.pull-left[
+
+```r
+ggplot(empleo)
+```
+
+![](index_files/figure-html/ggplt-1.png)&lt;!-- --&gt;
+]
+
+
+---
+# Mapeo
+
+.pull-left[
+
+```r
+ggplot(empleo, 
+       aes(fecha, ocupados))
+```
+
+- x -&gt; fecha
+- y-&gt; ocupados
+]
+
+.pull-right[
+![](index_files/figure-html/mapping-1.png)
+]
+
+
+
+---
+# Geoms (columnas)
+
+.pull-left[
+
+```r
+ggplot(empleo, 
+       aes(fecha, ocupados)) + 
+  geom_col()
+```
+]
+
+.pull-right[
+![](index_files/figure-html/barras-1.png)
+]
+
+
+---
+
+Comentarios:
+
+- Los ejes no empiezan en 0.
+- Bajo ratio de información tinta.
+
+
+---
+# Detalles
+
+```r
+talvi &lt;- ggplot(empleo, aes(fecha, ocupados)) + 
+  geom_col(fill = "orange", width =0.5) + 
+  geom_text(aes(x=fecha, y=ocupados, label=ocupados), nudge_y = 10) +
+  coord_cartesian(ylim=c(1540, 1670)) + 
+  scale_y_continuous(
+    labels = scales::number_format(big.mark = '.', decimal.mark = ',')
+  ) + 
+  theme_minimal() +
+  labs(x="Fecha", y = "Miles", 
+       caption = "Fuente: Ine.",
+       title = "Cantidad de ocupados") + 
+  theme(
+    plot.title = element_text(hjust = 0.5),
+    plot.caption = element_text(hjust = -.1)
+  )
+```
+
+---
+
+```r
+talvi
+```
+
+![](index_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+
+---
+Replicar
+
+![](index_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+---
+# Solución
+
+![](index_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+
+---
 
 
 ```r
-mutate(flights_sml,
-  gain = dep_delay - arr_delay,
-  speed = distance / air_time * 60
-)
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy, color = class))
 ```
 
-```
-## # A tibble: 336,776 x 9
-##     year month   day dep_delay arr_delay distance air_time  gain speed
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-##  1  2013     1     1         2        11     1400      227    -9  370.
-##  2  2013     1     1         4        20     1416      227   -16  374.
-##  3  2013     1     1         2        33     1089      160   -31  408.
-##  4  2013     1     1        -1       -18     1576      183    17  517.
-##  5  2013     1     1        -6       -25      762      116    19  394.
-##  6  2013     1     1        -4        12      719      150   -16  288.
-##  7  2013     1     1        -5        19     1065      158   -24  404.
-##  8  2013     1     1        -3       -14      229       53    11  259.
-##  9  2013     1     1        -3        -8      944      140     5  405.
-## 10  2013     1     1        -2         8      733      138   -10  319.
-## # … with 336,766 more rows
-```
+![](index_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
 
 ---
+# Solución
 
 
-## Mutate (2)
-Las funciones que usamos dentro de `mutate` deben estar vectorizadas: toman un vector como argumento y devuelven un vector del mismo tamaño como resultado:
+```
+## Warning: The shape palette can deal with a maximum of 6 discrete values
+## because more than 6 becomes difficult to discriminate; you have 7.
+## Consider specifying shapes manually if you must have them.
+```
+
+```
+## Warning: Removed 62 rows containing missing values (geom_point).
+```
+
+![](index_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
+
+---
 
 
 ```r
-mutate(flights_sml,
-  gain = dep_delay - arr_delay,
-  speed = distance / air_time * 60
-)
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(x = displ, y = hwy, shape = class))
 ```
 
 ```
-## # A tibble: 336,776 x 9
-##     year month   day dep_delay arr_delay distance air_time  gain speed
-##    &lt;int&gt; &lt;int&gt; &lt;int&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-##  1  2013     1     1         2        11     1400      227    -9  370.
-##  2  2013     1     1         4        20     1416      227   -16  374.
-##  3  2013     1     1         2        33     1089      160   -31  408.
-##  4  2013     1     1        -1       -18     1576      183    17  517.
-##  5  2013     1     1        -6       -25      762      116    19  394.
-##  6  2013     1     1        -4        12      719      150   -16  288.
-##  7  2013     1     1        -5        19     1065      158   -24  404.
-##  8  2013     1     1        -3       -14      229       53    11  259.
-##  9  2013     1     1        -3        -8      944      140     5  405.
-## 10  2013     1     1        -2         8      733      138   -10  319.
-## # … with 336,766 more rows
+## Warning: The shape palette can deal with a maximum of 6 discrete values
+## because more than 6 becomes difficult to discriminate; you have 7.
+## Consider specifying shapes manually if you must have them.
 ```
 
-- `dep_delay` y `arr_delay` son vectores
-- ¿`air_time * 60`?
+```
+## Warning: Removed 62 rows containing missing values (geom_point).
+```
+
+![](index_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
+
 
 ---
-## Funciones Útiles
-
-- `lead()`
-- `lag()` 
-- `cumsum()`
+# Otros Geoms
 
 ---
-## Bibliografía
+# Boxplots
 
-&lt;div align="left"&gt;
-&lt;img src="imgs/r4ds.png" width=250 height=375&gt;
-&lt;/div&gt;
+
+```r
+ggplot(data = mpg, mapping = aes(x = class, y = hwy)) + 
+  geom_boxplot()
+```
+
+![](index_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
+
+# Mapas
+
+
+```r
+nz &lt;- map_data("nz")
+```
+
+```
+## 
+## Attaching package: 'maps'
+```
+
+```
+## The following object is masked from 'package:purrr':
+## 
+##     map
+```
+
+```r
+ggplot(nz, aes(long, lat, group = group)) +
+  geom_polygon(fill = "white", colour = "black")
+```
+
+![](index_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
+
+
+
+---
+# Escalas
+- Los `aesthetics` mapean del dato al atributo estético de la figura.
+En este caso es: (alto de la barra -&gt; nivel de ocupación)
+                  posición en el eje x -&gt; fecha)
+- Las escalas pasan del atributo estético al dato. (alto -&gt; nivel de ocupación)
+---
+# Escalas
+
+- Qué tienen en común la leyenda y las etiquetas de los ejes?
+- Son escalas
+---
+
+# ¿Cómo seguir?
+Bibliografía
+
+- R for Data Science (Capítulo 3)
+
+Introducción a ggplot y algunos piques.
+
+- Kieran Healy: Visualización con ejemplos de R
+- Claus Wilke: Visualización
+- Roger Peng: Programación en ggplot
     </textarea>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="https://platform.twitter.com/widgets.js"></script>
 <script>var slideshow = remark.create({
 "highlightStyle": "github",
 "highlightLines": true,
