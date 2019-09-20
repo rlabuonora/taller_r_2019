@@ -25,6 +25,8 @@ Verbos para unir dos tablas:
 * `semi_join`, `anti_join`
 * `intersect`, `union`, `setdiff`
 
+
+---
 ## Especificar las columnas
 
 x está en los dos `\(data\)` `\(frames\)`.
@@ -51,7 +53,7 @@ df1
 ## 1     1     2
 ## 2     2     1
 ```
-
+---
 
 ```r
 df2
@@ -67,6 +69,7 @@ df2
 
 La opción `by` permite elegir los campos cuando tienen distinto nombre o hay varios que coinciden.
 
+---
 ##`left_join`
 
 Se queda con todas las filas del primer arg (`right_join` lo opuesto).
@@ -90,6 +93,7 @@ left_join(df1, df2)
 
 Pone `NA` en los que no aplican y todas las columnas.
 
+---
 ##`inner_join`
 Se queda con todas las filas que están en df1 que tienen un `\(match\)` en df2 y todas las columnas de df1 y df2.
 
@@ -109,6 +113,7 @@ inner_join(df1, df2)
 ## 1     1     2    10 a
 ```
 
+---
 ##`full_join`
 
 Se queda con todas las filas y columnas que están en los dos df.
@@ -131,6 +136,7 @@ full_join(df1, df2)
 ## 3     3    NA    10 a
 ```
 
+---
 ##`semi_join`
 
 Se queda con todas las filas del df1 que tienen un `\(match\)` en df2 y las columnas de df1.
@@ -151,7 +157,7 @@ semi_join(df1, df2)
 ## 1     1     2
 ```
 
-
+---
 ##`anti_join`
 
 Saca las filas de df1 que están en df2.
