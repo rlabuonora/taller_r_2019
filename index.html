@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Data Wrangling 2</title>
+    <title>Data Wrangling 2: Joins y reshape</title>
     <meta charset="utf-8">
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link href="libs/remark-css/default-fonts.css" rel="stylesheet" />
@@ -10,7 +10,7 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Data Wrangling 2
+# Data Wrangling 2: Joins y reshape
 
 ---
 
@@ -176,6 +176,249 @@ anti_join(df1, df2)
 ##       x     y
 ##   &lt;dbl&gt; &lt;int&gt;
 ## 1     2     1
+```
+
+---
+##Tidy data
+
+
+
+
+*"Happy families are all alike, every unhappy family is unhappy in its own way."* 
+                                                                   - Leo Tolstoy
+
+*"Tidy datasets are all alike, but every messy dataset is messy in its own way."* 
+                                                                - Hadley Wickham
+
+---
+## Tidy data (2) 
+
+- Cada observación tiene que ser una fila
+- Cada variable tiene que ser una columna
+
+
+```r
+library(tidyverse)
+```
+
+
+```r
+table1
+```
+
+```
+## # A tibble: 6 x 4
+##   country      year  cases population
+##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
+## 1 Afghanistan  1999    745   19987071
+## 2 Afghanistan  2000   2666   20595360
+## 3 Brazil       1999  37737  172006362
+## 4 Brazil       2000  80488  174504898
+## 5 China        1999 212258 1272915272
+## 6 China        2000 213766 1280428583
+```
+
+
+---
+##Calcular la tasa de enfermos
+
+
+```r
+library(tidyverse)
+```
+
+
+```r
+table1 %&gt;% 
+  mutate(tasa=cases/population)
+```
+
+```
+## # A tibble: 6 x 5
+##   country      year  cases population      tasa
+##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;     &lt;dbl&gt;
+## 1 Afghanistan  1999    745   19987071 0.0000373
+## 2 Afghanistan  2000   2666   20595360 0.000129 
+## 3 Brazil       1999  37737  172006362 0.000219 
+## 4 Brazil       2000  80488  174504898 0.000461 
+## 5 China        1999 212258 1272915272 0.000167 
+## 6 China        2000 213766 1280428583 0.000167
+```
+
+---
+## Casos por año
+
+
+```r
+library(tidyverse)
+```
+
+
+```r
+table1 %&gt;% 
+  group_by(year) %&gt;%
+  summarize(n=sum(cases))
+```
+
+```
+## # A tibble: 2 x 2
+##    year      n
+##   &lt;int&gt;  &lt;int&gt;
+## 1  1999 250740
+## 2  2000 296920
+```
+
+
+---
+## Untidy data (3) 
+
+
+```r
+table2
+```
+
+```
+## # A tibble: 12 x 4
+##    country      year type            count
+##    &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;           &lt;int&gt;
+##  1 Afghanistan  1999 cases             745
+##  2 Afghanistan  1999 population   19987071
+##  3 Afghanistan  2000 cases            2666
+##  4 Afghanistan  2000 population   20595360
+##  5 Brazil       1999 cases           37737
+##  6 Brazil       1999 population  172006362
+##  7 Brazil       2000 cases           80488
+##  8 Brazil       2000 population  174504898
+##  9 China        1999 cases          212258
+## 10 China        1999 population 1272915272
+## 11 China        2000 cases          213766
+## 12 China        2000 population 1280428583
+```
+
+---
+## Untidy data (4) 
+
+
+```r
+table3
+```
+
+```
+## # A tibble: 6 x 3
+##   country      year rate             
+## * &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;            
+## 1 Afghanistan  1999 745/19987071     
+## 2 Afghanistan  2000 2666/20595360    
+## 3 Brazil       1999 37737/172006362  
+## 4 Brazil       2000 80488/174504898  
+## 5 China        1999 212258/1272915272
+## 6 China        2000 213766/1280428583
+```
+
+---
+## Untidy data (5) 
+
+
+```r
+table4a
+```
+
+```
+## # A tibble: 3 x 3
+##   country     `1999` `2000`
+## * &lt;chr&gt;        &lt;int&gt;  &lt;int&gt;
+## 1 Afghanistan    745   2666
+## 2 Brazil       37737  80488
+## 3 China       212258 213766
+```
+---
+## Untidy data (6) 
+
+
+```r
+table4b
+```
+
+```
+## # A tibble: 3 x 3
+##   country         `1999`     `2000`
+## * &lt;chr&gt;            &lt;int&gt;      &lt;int&gt;
+## 1 Afghanistan   19987071   20595360
+## 2 Brazil       172006362  174504898
+## 3 China       1272915272 1280428583
+```
+---
+## Untidy data
+
+Se pueden lograr los mismos resultados a partir del resto de las tablas. Pero si primero llevamos los datos a una forma "canónica", podemos usarlas funciones de `dplyr`.
+
+---
+## `spread`
+
+
+```r
+table2
+```
+
+```
+## # A tibble: 12 x 4
+##    country      year type            count
+##    &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;           &lt;int&gt;
+##  1 Afghanistan  1999 cases             745
+##  2 Afghanistan  1999 population   19987071
+##  3 Afghanistan  2000 cases            2666
+##  4 Afghanistan  2000 population   20595360
+##  5 Brazil       1999 cases           37737
+##  6 Brazil       1999 population  172006362
+##  7 Brazil       2000 cases           80488
+##  8 Brazil       2000 population  174504898
+##  9 China        1999 cases          212258
+## 10 China        1999 population 1272915272
+## 11 China        2000 cases          213766
+## 12 China        2000 population 1280428583
+```
+---
+
+```r
+spread(table2, key=type, value=count )
+```
+
+```
+## # A tibble: 6 x 4
+##   country      year  cases population
+##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
+## 1 Afghanistan  1999    745   19987071
+## 2 Afghanistan  2000   2666   20595360
+## 3 Brazil       1999  37737  172006362
+## 4 Brazil       2000  80488  174504898
+## 5 China        1999 212258 1272915272
+## 6 China        2000 213766 1280428583
+```
+
+---
+## `gather`
+
+
+```r
+t4a &lt;- gather(table4a,"1999","2000", key="year", value="cases")
+t4b &lt;- gather(table4b,"1999","2000", key="year", value="population")
+left_join(t4a, t4b)
+```
+
+```
+## Joining, by = c("country", "year")
+```
+
+```
+## # A tibble: 6 x 4
+##   country     year   cases population
+##   &lt;chr&gt;       &lt;chr&gt;  &lt;int&gt;      &lt;int&gt;
+## 1 Afghanistan 1999     745   19987071
+## 2 Brazil      1999   37737  172006362
+## 3 China       1999  212258 1272915272
+## 4 Afghanistan 2000    2666   20595360
+## 5 Brazil      2000   80488  174504898
+## 6 China       2000  213766 1280428583
 ```
     </textarea>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

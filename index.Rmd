@@ -1,5 +1,5 @@
 ---
-title: "Data Wrangling 2"
+title: "Data Wrangling 2: Joins y reshape"
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -86,3 +86,106 @@ Saca las filas de df1 que están en df2.
 anti_join(df1, df2)
 ```
 
+---
+##Tidy data
+
+
+
+
+*"Happy families are all alike, every unhappy family is unhappy in its own way."* 
+                                                                   - Leo Tolstoy
+
+*"Tidy datasets are all alike, but every messy dataset is messy in its own way."* 
+                                                                - Hadley Wickham
+
+---
+## Tidy data (2) 
+
+- Cada observación tiene que ser una fila
+- Cada variable tiene que ser una columna
+
+```{r, message=FALSE}
+library(tidyverse)
+```
+
+```{r}
+table1
+```
+
+
+---
+##Calcular la tasa de enfermos
+
+```{r, message=FALSE}
+library(tidyverse)
+```
+
+```{r}
+table1 %>% 
+  mutate(tasa=cases/population)
+```
+
+---
+## Casos por año
+
+```{r, message=FALSE}
+library(tidyverse)
+```
+
+```{r}
+table1 %>% 
+  group_by(year) %>%
+  summarize(n=sum(cases))
+```
+
+
+---
+## Untidy data (3) 
+
+```{r}
+table2
+```
+
+---
+## Untidy data (4) 
+
+```{r}
+table3
+```
+
+---
+## Untidy data (5) 
+
+```{r}
+table4a
+```
+---
+## Untidy data (6) 
+
+```{r}
+table4b
+```
+---
+## Untidy data
+
+Se pueden lograr los mismos resultados a partir del resto de las tablas. Pero si primero llevamos los datos a una forma "canónica", podemos usarlas funciones de `dplyr`.
+
+---
+## `spread`
+
+```{r}
+table2
+```
+---
+```{r}
+spread(table2, key=type, value=count )
+```
+
+---
+## `gather`
+
+```{r}
+t4a <- gather(table4a,"1999","2000", key="year", value="cases")
+t4b <- gather(table4b,"1999","2000", key="year", value="population")
+left_join(t4a, t4b)
+```
