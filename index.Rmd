@@ -12,13 +12,13 @@ options(htmltools.dir.version = FALSE)
   * Introducción
     + [Taller 1](https://intro-r--taller-r.netlify.com/) - Uso básico de R
   * Data Wrangling
-    + [Taller 4 - Dplyr 1](https://data-wrangling--taller-r.netlify.com) - Select, mutate, filter, arrange
-    + [Taller 5 - Dplyr 2](https://data-wrangling-2--taller-r.netlify.com) - Merge, gather, spread
-    + [Taller 6 - Factores y fechas](https://factors_dates--taller-r.netlify.com) - Forcats & Lubridate
+    + [Taller 4 - Data Wrangling I](https://data-wrangling--taller-r.netlify.com) - Select, mutate, filter, arrange
+    + [Taller 5 - Data Wrangling II](https://data-wrangling-2--taller-r.netlify.com) - Merge, gather, spread
+    + [Taller 6 - Data Wrangling III: Factores y fechas](https://factors_dates--taller-r.netlify.com) - Forcats & Lubridate
     + [Taller 7 - Texto](https://texto--taller-r.netlify.com) - Stringr
   * Visualización
-    + [Taller 7 - Texto ](https://data-vis--taller-r.netlify.com) - Intro a ggplot
-    + [Taller 7 - Texto ](https://data-vis--taller-r.netlify.com) - Gramática de gráficos
+    + [Taller 7 - Visualización I ](https://data-vis--taller-r.netlify.com) - Intro a ggplot
+    + [Taller 7 - Visualización II ](https://data-vis--taller-r.netlify.com) - Gramática de gráficos
   * Modelado
     + [Taller 8 - Model] - TODO
   * Comunicación
