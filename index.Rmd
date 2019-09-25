@@ -24,6 +24,6 @@ options(htmltools.dir.version = FALSE)
   * Comunicación
     + [Taller 9 - Comunicación de resultados] - Reportes automáticos con Rmarkdown 
   * Avanzados
-    + [Taller 10](http://rpubs.com/rlabuonora/rlang) - El lenguaje R
+    + [Taller 10](https://rlang--taller-r.netlify.com) - El lenguaje R
     + [Taller 11 - GIT ](http://rpubs.com/rlabuonora/git) - Control de Versiones con GIT
     
