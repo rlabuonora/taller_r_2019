@@ -1,0 +1,31 @@
+<TiposProducciones xmlns="KBSNIG">
+	<TiposProducciones.TiposProduccionesItem xmlns="KBSNIG">
+		<TipoProduccionCodigo>1</TipoProduccionCodigo>
+		<TipoProduccionDescripcion>Venta de LECHE CUOTA o de reparto propio</TipoProduccionDescripcion>
+	</TiposProducciones.TiposProduccionesItem>
+	<TiposProducciones.TiposProduccionesItem xmlns="KBSNIG">
+		<TipoProduccionCodigo>2</TipoProduccionCodigo>
+		<TipoProduccionDescripcion>Venta de leche industria:</TipoProduccionDescripcion>
+	</TiposProducciones.TiposProduccionesItem>
+	<TiposProducciones.TiposProduccionesItem xmlns="KBSNIG">
+		<TipoProduccionCodigo>3</TipoProduccionCodigo>
+		<TipoProduccionDescripcion>Industrialización en el establecimiento:</TipoProduccionDescripcion>
+	</TiposProducciones.TiposProduccionesItem>
+	<TiposProducciones.TiposProduccionesItem xmlns="KBSNIG">
+		<TipoProduccionCodigo>4</TipoProduccionCodigo>
+		<TipoProduccionDescripcion>Consumo humano en el establecimiento:</TipoProduccionDescripcion>
+	</TiposProducciones.TiposProduccionesItem>
+	<TiposProducciones.TiposProduccionesItem xmlns="KBSNIG">
+		<TipoProduccionCodigo>5</TipoProduccionCodigo>
+		<TipoProduccionDescripcion>Consumo animal en el establecimiento:</TipoProduccionDescripcion>
+	</TiposProducciones.TiposProduccionesItem>
+	<TiposProducciones.TiposProduccionesItem xmlns="KBSNIG">
+		<TipoProduccionCodigo>10</TipoProduccionCodigo>
+		<TipoProduccionDescripcion>Venta de LECHE</TipoProduccionDescripcion>
+	</TiposProducciones.TiposProduccionesItem>
+	<TiposProducciones.TiposProduccionesItem xmlns="KBSNIG">
+		<TipoProduccionCodigo>11</TipoProduccionCodigo>
+		<TipoProduccionDescripcion>Otros destinos</TipoProduccionDescripcion>
+	</TiposProducciones.TiposProduccionesItem>
+</TiposProducciones>
+

@@ -1,0 +1,83 @@
+<Actividades xmlns="KBSNIG">
+	<Actividades.ActividadesItem xmlns="KBSNIG">
+		<ActividadCodigo>-</ActividadCodigo>
+		<ActividadDescripcion>PRODUCTOR</ActividadDescripcion>
+	</Actividades.ActividadesItem>
+	<Actividades.ActividadesItem xmlns="KBSNIG">
+		<ActividadCodigo>00</ActividadCodigo>
+		<ActividadDescripcion>FRIGORIFICO</ActividadDescripcion>
+	</Actividades.ActividadesItem>
+	<Actividades.ActividadesItem xmlns="KBSNIG">
+		<ActividadCodigo>31</ActividadCodigo>
+		<ActividadDescripcion>INCUBADURÍA</ActividadDescripcion>
+	</Actividades.ActividadesItem>
+	<Actividades.ActividadesItem xmlns="KBSNIG">
+		<ActividadCodigo>32</ActividadCodigo>
+		<ActividadDescripcion>GRANJA DE REPRODUCTORES</ActividadDescripcion>
+	</Actividades.ActividadesItem>
+	<Actividades.ActividadesItem xmlns="KBSNIG">
+		<ActividadCodigo>36</ActividadCodigo>
+		<ActividadDescripcion>GRANJA DE ENGORDE</ActividadDescripcion>
+	</Actividades.ActividadesItem>
+	<Actividades.ActividadesItem xmlns="KBSNIG">
+		<ActividadCodigo>37</ActividadCodigo>
+		<ActividadDescripcion>GRANJA DE POSTURA</ActividadDescripcion>
+	</Actividades.ActividadesItem>
+	<Actividades.ActividadesItem xmlns="KBSNIG">
+		<ActividadCodigo>38</ActividadCodigo>
+		<ActividadDescripcion>PROPIETARIO DE ANIMALES SIN GRANJA</ActividadDescripcion>
+	</Actividades.ActividadesItem>
+	<Actividades.ActividadesItem xmlns="KBSNIG">
+		<ActividadCodigo>39</ActividadCodigo>
+		<ActividadDescripcion>DESTINO COMERCIAL</ActividadDescripcion>
+	</Actividades.ActividadesItem>
+	<Actividades.ActividadesItem xmlns="KBSNIG">
+		<ActividadCodigo>40</ActividadCodigo>
+		<ActividadDescripcion>PLANTA DE FAENA DE AVES</ActividadDescripcion>
+	</Actividades.ActividadesItem>
+	<Actividades.ActividadesItem xmlns="KBSNIG">
+		<ActividadCodigo>44</ActividadCodigo>
+		<ActividadDescripcion>MATADERO - CARNICERÍA</ActividadDescripcion>
+	</Actividades.ActividadesItem>
+	<Actividades.ActividadesItem xmlns="KBSNIG">
+		<ActividadCodigo>45</ActividadCodigo>
+		<ActividadDescripcion>FAENA DE TERNEROS</ActividadDescripcion>
+	</Actividades.ActividadesItem>
+	<Actividades.ActividadesItem xmlns="KBSNIG">
+		<ActividadCodigo>70</ActividadCodigo>
+		<ActividadDescripcion>ADUANA</ActividadDescripcion>
+	</Actividades.ActividadesItem>
+	<Actividades.ActividadesItem xmlns="KBSNIG">
+		<ActividadCodigo>77</ActividadCodigo>
+		<ActividadDescripcion>IMPORTADOR O EXPORTADOR</ActividadDescripcion>
+	</Actividades.ActividadesItem>
+	<Actividades.ActividadesItem xmlns="KBSNIG">
+		<ActividadCodigo>80</ActividadCodigo>
+		<ActividadDescripcion>ORGANISMO OFICIAL</ActividadDescripcion>
+	</Actividades.ActividadesItem>
+	<Actividades.ActividadesItem xmlns="KBSNIG">
+		<ActividadCodigo>85</ActividadCodigo>
+		<ActividadDescripcion>ADMINISTRADOR DE CAMPO DE RECRIA</ActividadDescripcion>
+	</Actividades.ActividadesItem>
+	<Actividades.ActividadesItem xmlns="KBSNIG">
+		<ActividadCodigo>88</ActividadCodigo>
+		<ActividadDescripcion>MATADERO - CHACINERÍA</ActividadDescripcion>
+	</Actividades.ActividadesItem>
+	<Actividades.ActividadesItem xmlns="KBSNIG">
+		<ActividadCodigo>89</ActividadCodigo>
+		<ActividadDescripcion>CONSIGNATARIO</ActividadDescripcion>
+	</Actividades.ActividadesItem>
+	<Actividades.ActividadesItem xmlns="KBSNIG">
+		<ActividadCodigo>90</ActividadCodigo>
+		<ActividadDescripcion>REMATADOR</ActividadDescripcion>
+	</Actividades.ActividadesItem>
+	<Actividades.ActividadesItem xmlns="KBSNIG">
+		<ActividadCodigo>91</ActividadCodigo>
+		<ActividadDescripcion>LOCAL FERIA</ActividadDescripcion>
+	</Actividades.ActividadesItem>
+	<Actividades.ActividadesItem xmlns="KBSNIG">
+		<ActividadCodigo>99</ActividadCodigo>
+		<ActividadDescripcion>CAMPO FISCAL O VIA PUBLICA SIN DICOSE</ActividadDescripcion>
+	</Actividades.ActividadesItem>
+</Actividades>
+

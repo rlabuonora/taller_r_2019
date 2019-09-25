@@ -1,0 +1,19 @@
+<Productos xmlns="KBSNIG">
+	<Productos.ProductosItem xmlns="KBSNIG">
+		<ProductoCodigo>6</ProductoCodigo>
+		<ProductoDescripcion>1.CREMA</ProductoDescripcion>
+	</Productos.ProductosItem>
+	<Productos.ProductosItem xmlns="KBSNIG">
+		<ProductoCodigo>7</ProductoCodigo>
+		<ProductoDescripcion>2.MANTECA</ProductoDescripcion>
+	</Productos.ProductosItem>
+	<Productos.ProductosItem xmlns="KBSNIG">
+		<ProductoCodigo>8</ProductoCodigo>
+		<ProductoDescripcion>3.QUESO</ProductoDescripcion>
+	</Productos.ProductosItem>
+	<Productos.ProductosItem xmlns="KBSNIG">
+		<ProductoCodigo>9</ProductoCodigo>
+		<ProductoDescripcion>4.OTROS PRODUCTOS</ProductoDescripcion>
+	</Productos.ProductosItem>
+</Productos>
+

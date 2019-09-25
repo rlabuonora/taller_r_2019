@@ -1,0 +1,155 @@
+<Giros xmlns="KBSNIG">
+	<Giros.GirosItem xmlns="KBSNIG">
+		<GiroCodigo>01</GiroCodigo>
+		<GiroDescripcion>Ganadería</GiroDescripcion>
+	</Giros.GirosItem>
+	<Giros.GirosItem xmlns="KBSNIG">
+		<GiroCodigo>02</GiroCodigo>
+		<GiroDescripcion>Lechería</GiroDescripcion>
+	</Giros.GirosItem>
+	<Giros.GirosItem xmlns="KBSNIG">
+		<GiroCodigo>03</GiroCodigo>
+		<GiroDescripcion>Agricultura</GiroDescripcion>
+	</Giros.GirosItem>
+	<Giros.GirosItem xmlns="KBSNIG">
+		<GiroCodigo>04</GiroCodigo>
+		<GiroDescripcion>Citricultura</GiroDescripcion>
+	</Giros.GirosItem>
+	<Giros.GirosItem xmlns="KBSNIG">
+		<GiroCodigo>05</GiroCodigo>
+		<GiroDescripcion>Forestación</GiroDescripcion>
+	</Giros.GirosItem>
+	<Giros.GirosItem xmlns="KBSNIG">
+		<GiroCodigo>06</GiroCodigo>
+		<GiroDescripcion>Horticultura</GiroDescripcion>
+	</Giros.GirosItem>
+	<Giros.GirosItem xmlns="KBSNIG">
+		<GiroCodigo>07</GiroCodigo>
+		<GiroDescripcion>Vitivinicultura</GiroDescripcion>
+	</Giros.GirosItem>
+	<Giros.GirosItem xmlns="KBSNIG">
+		<GiroCodigo>08</GiroCodigo>
+		<GiroDescripcion>Frigorífico</GiroDescripcion>
+	</Giros.GirosItem>
+	<Giros.GirosItem xmlns="KBSNIG">
+		<GiroCodigo>09</GiroCodigo>
+		<GiroDescripcion>Matadero carnicería</GiroDescripcion>
+	</Giros.GirosItem>
+	<Giros.GirosItem xmlns="KBSNIG">
+		<GiroCodigo>10</GiroCodigo>
+		<GiroDescripcion>Carnicería sin planta de faena</GiroDescripcion>
+	</Giros.GirosItem>
+	<Giros.GirosItem xmlns="KBSNIG">
+		<GiroCodigo>11</GiroCodigo>
+		<GiroDescripcion>Matadero Chacinería</GiroDescripcion>
+	</Giros.GirosItem>
+	<Giros.GirosItem xmlns="KBSNIG">
+		<GiroCodigo>12</GiroCodigo>
+		<GiroDescripcion>Chacinería sin planta de faena</GiroDescripcion>
+	</Giros.GirosItem>
+	<Giros.GirosItem xmlns="KBSNIG">
+		<GiroCodigo>13</GiroCodigo>
+		<GiroDescripcion>Rematador</GiroDescripcion>
+	</Giros.GirosItem>
+	<Giros.GirosItem xmlns="KBSNIG">
+		<GiroCodigo>14</GiroCodigo>
+		<GiroDescripcion>Consignatario</GiroDescripcion>
+	</Giros.GirosItem>
+	<Giros.GirosItem xmlns="KBSNIG">
+		<GiroCodigo>15</GiroCodigo>
+		<GiroDescripcion>Exportador e importador de ganado en pie</GiroDescripcion>
+	</Giros.GirosItem>
+	<Giros.GirosItem xmlns="KBSNIG">
+		<GiroCodigo>16</GiroCodigo>
+		<GiroDescripcion>Tenedor de campo sin ganado propio</GiroDescripcion>
+	</Giros.GirosItem>
+	<Giros.GirosItem xmlns="KBSNIG">
+		<GiroCodigo>17</GiroCodigo>
+		<GiroDescripcion>Futuras operaciones</GiroDescripcion>
+	</Giros.GirosItem>
+	<Giros.GirosItem xmlns="KBSNIG">
+		<GiroCodigo>18</GiroCodigo>
+		<GiroDescripcion>Propietarios de ganado sin campo</GiroDescripcion>
+	</Giros.GirosItem>
+	<Giros.GirosItem xmlns="KBSNIG">
+		<GiroCodigo>19</GiroCodigo>
+		<GiroDescripcion>Organismos Oficiales</GiroDescripcion>
+	</Giros.GirosItem>
+	<Giros.GirosItem xmlns="KBSNIG">
+		<GiroCodigo>20</GiroCodigo>
+		<GiroDescripcion>Avicultura</GiroDescripcion>
+	</Giros.GirosItem>
+	<Giros.GirosItem xmlns="KBSNIG">
+		<GiroCodigo>21</GiroCodigo>
+		<GiroDescripcion>Fruticultura</GiroDescripcion>
+	</Giros.GirosItem>
+	<Giros.GirosItem xmlns="KBSNIG">
+		<GiroCodigo>22</GiroCodigo>
+		<GiroDescripcion>Local Feria</GiroDescripcion>
+	</Giros.GirosItem>
+	<Giros.GirosItem xmlns="KBSNIG">
+		<GiroCodigo>23</GiroCodigo>
+		<GiroDescripcion>Administrador de Campo de Recría</GiroDescripcion>
+	</Giros.GirosItem>
+	<Giros.GirosItem xmlns="KBSNIG">
+		<GiroCodigo>24</GiroCodigo>
+		<GiroDescripcion>Fasonero de Aves</GiroDescripcion>
+	</Giros.GirosItem>
+	<Giros.GirosItem xmlns="KBSNIG">
+		<GiroCodigo>25</GiroCodigo>
+		<GiroDescripcion>Tenedores de Aves sin granja</GiroDescripcion>
+	</Giros.GirosItem>
+	<Giros.GirosItem xmlns="KBSNIG">
+		<GiroCodigo>26</GiroCodigo>
+		<GiroDescripcion>Intermediarios de Aves</GiroDescripcion>
+	</Giros.GirosItem>
+	<Giros.GirosItem xmlns="KBSNIG">
+		<GiroCodigo>27</GiroCodigo>
+		<GiroDescripcion>Planta de Faena de Aves</GiroDescripcion>
+	</Giros.GirosItem>
+	<Giros.GirosItem xmlns="KBSNIG">
+		<GiroCodigo>28</GiroCodigo>
+		<GiroDescripcion>Importador de Aves/Huevos</GiroDescripcion>
+	</Giros.GirosItem>
+	<Giros.GirosItem xmlns="KBSNIG">
+		<GiroCodigo>30</GiroCodigo>
+		<GiroDescripcion>Tenedor de equinos con campo</GiroDescripcion>
+	</Giros.GirosItem>
+	<Giros.GirosItem xmlns="KBSNIG">
+		<GiroCodigo>31</GiroCodigo>
+		<GiroDescripcion>Tenedor de equinos sin campo</GiroDescripcion>
+	</Giros.GirosItem>
+	<Giros.GirosItem xmlns="KBSNIG">
+		<GiroCodigo>33</GiroCodigo>
+		<GiroDescripcion>ACOPIADOR DE EQUINOS</GiroDescripcion>
+	</Giros.GirosItem>
+	<Giros.GirosItem xmlns="KBSNIG">
+		<GiroCodigo>40</GiroCodigo>
+		<GiroDescripcion>Tenedor de caprinos</GiroDescripcion>
+	</Giros.GirosItem>
+	<Giros.GirosItem xmlns="KBSNIG">
+		<GiroCodigo>50</GiroCodigo>
+		<GiroDescripcion>Suinicultura</GiroDescripcion>
+	</Giros.GirosItem>
+	<Giros.GirosItem xmlns="KBSNIG">
+		<GiroCodigo>51</GiroCodigo>
+		<GiroDescripcion>Acopiador de Suinos</GiroDescripcion>
+	</Giros.GirosItem>
+	<Giros.GirosItem xmlns="KBSNIG">
+		<GiroCodigo>52</GiroCodigo>
+		<GiroDescripcion>Rematador de Suinos</GiroDescripcion>
+	</Giros.GirosItem>
+	<Giros.GirosItem xmlns="KBSNIG">
+		<GiroCodigo>60</GiroCodigo>
+		<GiroDescripcion>ENGORDE A CORRAL</GiroDescripcion>
+	</Giros.GirosItem>
+	<Giros.GirosItem xmlns="KBSNIG">
+		<GiroCodigo>61</GiroCodigo>
+		<GiroDescripcion>Cuarentenarios</GiroDescripcion>
+	</Giros.GirosItem>
+	<Giros.GirosItem xmlns="KBSNIG">
+		<GiroCodigo>62</GiroCodigo>
+		<GiroDescripcion>Campos de recría</GiroDescripcion>
+	</Giros.GirosItem>
+</Giros>
+

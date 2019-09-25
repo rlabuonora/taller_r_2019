@@ -1,0 +1,31 @@
+<MejoramientosTierra xmlns="KBSNIG">
+	<MejoramientosTierra.MejoramientosTierraItem xmlns="KBSNIG">
+		<MejoramientoCodigo>1</MejoramientoCodigo>
+		<MejoramientoDescripcion>Praderas artificiales permanentes</MejoramientoDescripcion>
+	</MejoramientosTierra.MejoramientosTierraItem>
+	<MejoramientosTierra.MejoramientosTierraItem xmlns="KBSNIG">
+		<MejoramientoCodigo>1a</MejoramientoCodigo>
+		<MejoramientoDescripcion>Hás de praderas realizadas en forma convencional</MejoramientoDescripcion>
+	</MejoramientosTierra.MejoramientosTierraItem>
+	<MejoramientosTierra.MejoramientosTierraItem xmlns="KBSNIG">
+		<MejoramientoCodigo>2</MejoramientoCodigo>
+		<MejoramientoDescripcion>Siembra en cobertura</MejoramientoDescripcion>
+	</MejoramientosTierra.MejoramientosTierraItem>
+	<MejoramientosTierra.MejoramientosTierraItem xmlns="KBSNIG">
+		<MejoramientoCodigo>2a</MejoramientoCodigo>
+		<MejoramientoDescripcion>Hás de praderas realizadas en siembra directa</MejoramientoDescripcion>
+	</MejoramientosTierra.MejoramientosTierraItem>
+	<MejoramientosTierra.MejoramientosTierraItem xmlns="KBSNIG">
+		<MejoramientoCodigo>3</MejoramientoCodigo>
+		<MejoramientoDescripcion>Siembra a zapata</MejoramientoDescripcion>
+	</MejoramientosTierra.MejoramientosTierraItem>
+	<MejoramientosTierra.MejoramientosTierraItem xmlns="KBSNIG">
+		<MejoramientoCodigo>4</MejoramientoCodigo>
+		<MejoramientoDescripcion>Campo natural fertilizado</MejoramientoDescripcion>
+	</MejoramientosTierra.MejoramientosTierraItem>
+	<MejoramientosTierra.MejoramientosTierraItem xmlns="KBSNIG">
+		<MejoramientoCodigo>5</MejoramientoCodigo>
+		<MejoramientoDescripcion>Cantidad de fracciones de campo separadas entre si</MejoramientoDescripcion>
+	</MejoramientosTierra.MejoramientosTierraItem>
+</MejoramientosTierra>
+

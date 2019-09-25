@@ -1,0 +1,31 @@
+<Especies xmlns="KBSNIG">
+	<Especies.EspeciesItem xmlns="KBSNIG">
+		<EspecieCodigo>1</EspecieCodigo>
+		<EspecieDescripcion>BOVINOS</EspecieDescripcion>
+	</Especies.EspeciesItem>
+	<Especies.EspeciesItem xmlns="KBSNIG">
+		<EspecieCodigo>2</EspecieCodigo>
+		<EspecieDescripcion>OVINOS</EspecieDescripcion>
+	</Especies.EspeciesItem>
+	<Especies.EspeciesItem xmlns="KBSNIG">
+		<EspecieCodigo>3</EspecieCodigo>
+		<EspecieDescripcion>YEGUARIZOS</EspecieDescripcion>
+	</Especies.EspeciesItem>
+	<Especies.EspeciesItem xmlns="KBSNIG">
+		<EspecieCodigo>4</EspecieCodigo>
+		<EspecieDescripcion>CAPRINOS</EspecieDescripcion>
+	</Especies.EspeciesItem>
+	<Especies.EspeciesItem xmlns="KBSNIG">
+		<EspecieCodigo>5</EspecieCodigo>
+		<EspecieDescripcion>SUINOS</EspecieDescripcion>
+	</Especies.EspeciesItem>
+	<Especies.EspeciesItem xmlns="KBSNIG">
+		<EspecieCodigo>10</EspecieCodigo>
+		<EspecieDescripcion>AVES</EspecieDescripcion>
+	</Especies.EspeciesItem>
+	<Especies.EspeciesItem xmlns="KBSNIG">
+		<EspecieCodigo>11</EspecieCodigo>
+		<EspecieDescripcion>BOVINOS DE LECHE</EspecieDescripcion>
+	</Especies.EspeciesItem>
+</Especies>
+

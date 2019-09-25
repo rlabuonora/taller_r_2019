@@ -1,0 +1,249 @@
+<Categorias xmlns="KBSNIG">
+	<Categorias.CategoriasItem xmlns="KBSNIG">
+		<EspecieCodigo>1</EspecieCodigo>
+		<CategoriaCodigo>1</CategoriaCodigo>
+		<CategoriaDescripcion>1) TOROS</CategoriaDescripcion>
+		<CategoriaPonderacionUG>1,25</CategoriaPonderacionUG>
+	</Categorias.CategoriasItem>
+	<Categorias.CategoriasItem xmlns="KBSNIG">
+		<EspecieCodigo>1</EspecieCodigo>
+		<CategoriaCodigo>2</CategoriaCodigo>
+		<CategoriaDescripcion>2) VACAS DE CRIA (ENTORADAS)</CategoriaDescripcion>
+		<CategoriaPonderacionUG>1,03</CategoriaPonderacionUG>
+	</Categorias.CategoriasItem>
+	<Categorias.CategoriasItem xmlns="KBSNIG">
+		<EspecieCodigo>1</EspecieCodigo>
+		<CategoriaCodigo>3</CategoriaCodigo>
+		<CategoriaDescripcion>3) VACAS DE INVERNADA</CategoriaDescripcion>
+		<CategoriaPonderacionUG>1,00</CategoriaPonderacionUG>
+	</Categorias.CategoriasItem>
+	<Categorias.CategoriasItem xmlns="KBSNIG">
+		<EspecieCodigo>1</EspecieCodigo>
+		<CategoriaCodigo>4</CategoriaCodigo>
+		<CategoriaDescripcion>4) NOVILLOS DE MAS DE 3 AÑOS</CategoriaDescripcion>
+		<CategoriaPonderacionUG>1,15</CategoriaPonderacionUG>
+	</Categorias.CategoriasItem>
+	<Categorias.CategoriasItem xmlns="KBSNIG">
+		<EspecieCodigo>1</EspecieCodigo>
+		<CategoriaCodigo>5</CategoriaCodigo>
+		<CategoriaDescripcion>5) NOVILLOS DE 2 A 3 AÑOS</CategoriaDescripcion>
+		<CategoriaPonderacionUG>0,90</CategoriaPonderacionUG>
+	</Categorias.CategoriasItem>
+	<Categorias.CategoriasItem xmlns="KBSNIG">
+		<EspecieCodigo>1</EspecieCodigo>
+		<CategoriaCodigo>6</CategoriaCodigo>
+		<CategoriaDescripcion>6) NOVILLOS DE 1 A 2 AÑOS</CategoriaDescripcion>
+		<CategoriaPonderacionUG>0,80</CategoriaPonderacionUG>
+	</Categorias.CategoriasItem>
+	<Categorias.CategoriasItem xmlns="KBSNIG">
+		<EspecieCodigo>1</EspecieCodigo>
+		<CategoriaCodigo>7</CategoriaCodigo>
+		<CategoriaDescripcion>7) VAQUILLONA DE MAS DE 2 AÑOS SIN ENTORAR</CategoriaDescripcion>
+		<CategoriaPonderacionUG>0,90</CategoriaPonderacionUG>
+	</Categorias.CategoriasItem>
+	<Categorias.CategoriasItem xmlns="KBSNIG">
+		<EspecieCodigo>1</EspecieCodigo>
+		<CategoriaCodigo>8</CategoriaCodigo>
+		<CategoriaDescripcion>8) VAQUILLONAS DE 1 A 2 AÑOS</CategoriaDescripcion>
+		<CategoriaPonderacionUG>0,70</CategoriaPonderacionUG>
+	</Categorias.CategoriasItem>
+	<Categorias.CategoriasItem xmlns="KBSNIG">
+		<EspecieCodigo>1</EspecieCodigo>
+		<CategoriaCodigo>9</CategoriaCodigo>
+		<CategoriaDescripcion>9) TERNEROS/TERNERAS</CategoriaDescripcion>
+		<CategoriaPonderacionUG>0,50</CategoriaPonderacionUG>
+	</Categorias.CategoriasItem>
+	<Categorias.CategoriasItem xmlns="KBSNIG">
+		<EspecieCodigo>2</EspecieCodigo>
+		<CategoriaCodigo>1</CategoriaCodigo>
+		<CategoriaDescripcion>1) CARNEROS</CategoriaDescripcion>
+		<CategoriaPonderacionUG>0,17</CategoriaPonderacionUG>
+	</Categorias.CategoriasItem>
+	<Categorias.CategoriasItem xmlns="KBSNIG">
+		<EspecieCodigo>2</EspecieCodigo>
+		<CategoriaCodigo>2</CategoriaCodigo>
+		<CategoriaDescripcion>2) OVEJAS DE CRIA(ENCARNERADAS)</CategoriaDescripcion>
+		<CategoriaPonderacionUG>0,17</CategoriaPonderacionUG>
+	</Categorias.CategoriasItem>
+	<Categorias.CategoriasItem xmlns="KBSNIG">
+		<EspecieCodigo>2</EspecieCodigo>
+		<CategoriaCodigo>3</CategoriaCodigo>
+		<CategoriaDescripcion>3) OVEJAS DE DESCARTE(CONSUMO)</CategoriaDescripcion>
+		<CategoriaPonderacionUG>0,15</CategoriaPonderacionUG>
+	</Categorias.CategoriasItem>
+	<Categorias.CategoriasItem xmlns="KBSNIG">
+		<EspecieCodigo>2</EspecieCodigo>
+		<CategoriaCodigo>4</CategoriaCodigo>
+		<CategoriaDescripcion>4) CAPONES</CategoriaDescripcion>
+		<CategoriaPonderacionUG>0,15</CategoriaPonderacionUG>
+	</Categorias.CategoriasItem>
+	<Categorias.CategoriasItem xmlns="KBSNIG">
+		<EspecieCodigo>2</EspecieCodigo>
+		<CategoriaCodigo>5</CategoriaCodigo>
+		<CategoriaDescripcion>5) BORREGAS 2 A 4 DIENTES SIN ENCARNERAR</CategoriaDescripcion>
+		<CategoriaPonderacionUG>0,13</CategoriaPonderacionUG>
+	</Categorias.CategoriasItem>
+	<Categorias.CategoriasItem xmlns="KBSNIG">
+		<EspecieCodigo>2</EspecieCodigo>
+		<CategoriaCodigo>6</CategoriaCodigo>
+		<CategoriaDescripcion>6) CORDERAS DIENTE DE LECHE</CategoriaDescripcion>
+		<CategoriaPonderacionUG>0,11</CategoriaPonderacionUG>
+	</Categorias.CategoriasItem>
+	<Categorias.CategoriasItem xmlns="KBSNIG">
+		<EspecieCodigo>2</EspecieCodigo>
+		<CategoriaCodigo>7</CategoriaCodigo>
+		<CategoriaDescripcion>7) CORDEROS DIENTE DE LECHE</CategoriaDescripcion>
+		<CategoriaPonderacionUG>0,11</CategoriaPonderacionUG>
+	</Categorias.CategoriasItem>
+	<Categorias.CategoriasItem xmlns="KBSNIG">
+		<EspecieCodigo>2</EspecieCodigo>
+		<CategoriaCodigo>8</CategoriaCodigo>
+		<CategoriaDescripcion>8) CORDEROS/AS MAMONES</CategoriaDescripcion>
+		<CategoriaPonderacionUG>0,08</CategoriaPonderacionUG>
+	</Categorias.CategoriasItem>
+	<Categorias.CategoriasItem xmlns="KBSNIG">
+		<EspecieCodigo>3</EspecieCodigo>
+		<CategoriaCodigo>1</CategoriaCodigo>
+		<CategoriaDescripcion>1) PADRILLOS</CategoriaDescripcion>
+		<CategoriaPonderacionUG>1,20</CategoriaPonderacionUG>
+	</Categorias.CategoriasItem>
+	<Categorias.CategoriasItem xmlns="KBSNIG">
+		<EspecieCodigo>3</EspecieCodigo>
+		<CategoriaCodigo>2</CategoriaCodigo>
+		<CategoriaDescripcion>2) YEGUAS</CategoriaDescripcion>
+		<CategoriaPonderacionUG>1,20</CategoriaPonderacionUG>
+	</Categorias.CategoriasItem>
+	<Categorias.CategoriasItem xmlns="KBSNIG">
+		<EspecieCodigo>3</EspecieCodigo>
+		<CategoriaCodigo>3</CategoriaCodigo>
+		<CategoriaDescripcion>3) CABALLOS</CategoriaDescripcion>
+		<CategoriaPonderacionUG>1,20</CategoriaPonderacionUG>
+	</Categorias.CategoriasItem>
+	<Categorias.CategoriasItem xmlns="KBSNIG">
+		<EspecieCodigo>3</EspecieCodigo>
+		<CategoriaCodigo>4</CategoriaCodigo>
+		<CategoriaDescripcion>4) POTRILLOS/POTRANCAS</CategoriaDescripcion>
+		<CategoriaPonderacionUG>1,20</CategoriaPonderacionUG>
+	</Categorias.CategoriasItem>
+	<Categorias.CategoriasItem xmlns="KBSNIG">
+		<EspecieCodigo>3</EspecieCodigo>
+		<CategoriaCodigo>5</CategoriaCodigo>
+		<CategoriaDescripcion>5) POTRILLOS/POTRANCAS AL PIE DE LA MADRE</CategoriaDescripcion>
+		<CategoriaPonderacionUG>1,20</CategoriaPonderacionUG>
+	</Categorias.CategoriasItem>
+	<Categorias.CategoriasItem xmlns="KBSNIG">
+		<EspecieCodigo>4</EspecieCodigo>
+		<CategoriaCodigo>1</CategoriaCodigo>
+		<CategoriaDescripcion>1) MACHOS REPRODUCTORES</CategoriaDescripcion>
+		<CategoriaPonderacionUG>0,00</CategoriaPonderacionUG>
+	</Categorias.CategoriasItem>
+	<Categorias.CategoriasItem xmlns="KBSNIG">
+		<EspecieCodigo>4</EspecieCodigo>
+		<CategoriaCodigo>2</CategoriaCodigo>
+		<CategoriaDescripcion>2) HEMBRAS EN ORDEÑE</CategoriaDescripcion>
+		<CategoriaPonderacionUG>0,00</CategoriaPonderacionUG>
+	</Categorias.CategoriasItem>
+	<Categorias.CategoriasItem xmlns="KBSNIG">
+		<EspecieCodigo>4</EspecieCodigo>
+		<CategoriaCodigo>3</CategoriaCodigo>
+		<CategoriaDescripcion>3) HEMBRAS SECAS</CategoriaDescripcion>
+		<CategoriaPonderacionUG>0,00</CategoriaPonderacionUG>
+	</Categorias.CategoriasItem>
+	<Categorias.CategoriasItem xmlns="KBSNIG">
+		<EspecieCodigo>4</EspecieCodigo>
+		<CategoriaCodigo>4</CategoriaCodigo>
+		<CategoriaDescripcion>4) HEMBRAS DE CRÍA</CategoriaDescripcion>
+		<CategoriaPonderacionUG>0,00</CategoriaPonderacionUG>
+	</Categorias.CategoriasItem>
+	<Categorias.CategoriasItem xmlns="KBSNIG">
+		<EspecieCodigo>4</EspecieCodigo>
+		<CategoriaCodigo>5</CategoriaCodigo>
+		<CategoriaDescripcion>5) MACHOS CAPONES</CategoriaDescripcion>
+		<CategoriaPonderacionUG>0,00</CategoriaPonderacionUG>
+	</Categorias.CategoriasItem>
+	<Categorias.CategoriasItem xmlns="KBSNIG">
+		<EspecieCodigo>4</EspecieCodigo>
+		<CategoriaCodigo>6</CategoriaCodigo>
+		<CategoriaDescripcion>6) HEMBRAS MENOS DE 1 AÑO</CategoriaDescripcion>
+		<CategoriaPonderacionUG>0,00</CategoriaPonderacionUG>
+	</Categorias.CategoriasItem>
+	<Categorias.CategoriasItem xmlns="KBSNIG">
+		<EspecieCodigo>4</EspecieCodigo>
+		<CategoriaCodigo>7</CategoriaCodigo>
+		<CategoriaDescripcion>7) MACHOS MENOS DE 1 AÑO</CategoriaDescripcion>
+		<CategoriaPonderacionUG>0,00</CategoriaPonderacionUG>
+	</Categorias.CategoriasItem>
+	<Categorias.CategoriasItem xmlns="KBSNIG">
+		<EspecieCodigo>5</EspecieCodigo>
+		<CategoriaCodigo>1</CategoriaCodigo>
+		<CategoriaDescripcion>1) PADRILLOS</CategoriaDescripcion>
+		<CategoriaPonderacionUG>0,00</CategoriaPonderacionUG>
+	</Categorias.CategoriasItem>
+	<Categorias.CategoriasItem xmlns="KBSNIG">
+		<EspecieCodigo>5</EspecieCodigo>
+		<CategoriaCodigo>2</CategoriaCodigo>
+		<CategoriaDescripcion>2) MADRES</CategoriaDescripcion>
+		<CategoriaPonderacionUG>0,00</CategoriaPonderacionUG>
+	</Categorias.CategoriasItem>
+	<Categorias.CategoriasItem xmlns="KBSNIG">
+		<EspecieCodigo>5</EspecieCodigo>
+		<CategoriaCodigo>3</CategoriaCodigo>
+		<CategoriaDescripcion>3) CERDOS DE MÁS DE 90 KG</CategoriaDescripcion>
+		<CategoriaPonderacionUG>0,00</CategoriaPonderacionUG>
+	</Categorias.CategoriasItem>
+	<Categorias.CategoriasItem xmlns="KBSNIG">
+		<EspecieCodigo>5</EspecieCodigo>
+		<CategoriaCodigo>4</CategoriaCodigo>
+		<CategoriaDescripcion>4) CACHORROS DE HASTA 90 KG</CategoriaDescripcion>
+		<CategoriaPonderacionUG>0,00</CategoriaPonderacionUG>
+	</Categorias.CategoriasItem>
+	<Categorias.CategoriasItem xmlns="KBSNIG">
+		<EspecieCodigo>5</EspecieCodigo>
+		<CategoriaCodigo>5</CategoriaCodigo>
+		<CategoriaDescripcion>5) LECHONES AL PIE DE LA MADRE</CategoriaDescripcion>
+		<CategoriaPonderacionUG>0,00</CategoriaPonderacionUG>
+	</Categorias.CategoriasItem>
+	<Categorias.CategoriasItem xmlns="KBSNIG">
+		<EspecieCodigo>11</EspecieCodigo>
+		<CategoriaCodigo>1</CategoriaCodigo>
+		<CategoriaDescripcion>1) TOROS</CategoriaDescripcion>
+		<CategoriaPonderacionUG>0,55</CategoriaPonderacionUG>
+	</Categorias.CategoriasItem>
+	<Categorias.CategoriasItem xmlns="KBSNIG">
+		<EspecieCodigo>11</EspecieCodigo>
+		<CategoriaCodigo>2</CategoriaCodigo>
+		<CategoriaDescripcion>2) VACAS EN ORDEÑE</CategoriaDescripcion>
+		<CategoriaPonderacionUG>0,58</CategoriaPonderacionUG>
+	</Categorias.CategoriasItem>
+	<Categorias.CategoriasItem xmlns="KBSNIG">
+		<EspecieCodigo>11</EspecieCodigo>
+		<CategoriaCodigo>3</CategoriaCodigo>
+		<CategoriaDescripcion>3) VACAS SECAS</CategoriaDescripcion>
+		<CategoriaPonderacionUG>0,18</CategoriaPonderacionUG>
+	</Categorias.CategoriasItem>
+	<Categorias.CategoriasItem xmlns="KBSNIG">
+		<EspecieCodigo>11</EspecieCodigo>
+		<CategoriaCodigo>4</CategoriaCodigo>
+		<CategoriaDescripcion>4) VAQUILLONAS DE MÁS DE 2 AÑOS SIN ENTORAR</CategoriaDescripcion>
+		<CategoriaPonderacionUG>0,00</CategoriaPonderacionUG>
+	</Categorias.CategoriasItem>
+	<Categorias.CategoriasItem xmlns="KBSNIG">
+		<EspecieCodigo>11</EspecieCodigo>
+		<CategoriaCodigo>5</CategoriaCodigo>
+		<CategoriaDescripcion>5) VAQUILLONAS DE 1 Ó 2 AÑOS</CategoriaDescripcion>
+		<CategoriaPonderacionUG>0,00</CategoriaPonderacionUG>
+	</Categorias.CategoriasItem>
+	<Categorias.CategoriasItem xmlns="KBSNIG">
+		<EspecieCodigo>11</EspecieCodigo>
+		<CategoriaCodigo>6</CategoriaCodigo>
+		<CategoriaDescripcion>6) TERNEROS DE MENOS DE 1 AÑO</CategoriaDescripcion>
+		<CategoriaPonderacionUG>0,00</CategoriaPonderacionUG>
+	</Categorias.CategoriasItem>
+	<Categorias.CategoriasItem xmlns="KBSNIG">
+		<EspecieCodigo>11</EspecieCodigo>
+		<CategoriaCodigo>7</CategoriaCodigo>
+		<CategoriaDescripcion>7) TERNERAS DE MENOS DE 1 AÑO</CategoriaDescripcion>
+		<CategoriaPonderacionUG>0,00</CategoriaPonderacionUG>
+	</Categorias.CategoriasItem>
+</Categorias>
+

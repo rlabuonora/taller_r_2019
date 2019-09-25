@@ -1,0 +1,43 @@
+<Estratos xmlns="KBSNIG">
+	<Estratos.EstratosItem xmlns="KBSNIG">
+		<EstratoCodigo>1</EstratoCodigo>
+		<EstratoDescripcion>0) 0</EstratoDescripcion>
+	</Estratos.EstratosItem>
+	<Estratos.EstratosItem xmlns="KBSNIG">
+		<EstratoCodigo>2</EstratoCodigo>
+		<EstratoDescripcion>1) 1 a 49</EstratoDescripcion>
+	</Estratos.EstratosItem>
+	<Estratos.EstratosItem xmlns="KBSNIG">
+		<EstratoCodigo>3</EstratoCodigo>
+		<EstratoDescripcion>2) 50 a 99</EstratoDescripcion>
+	</Estratos.EstratosItem>
+	<Estratos.EstratosItem xmlns="KBSNIG">
+		<EstratoCodigo>4</EstratoCodigo>
+		<EstratoDescripcion>3) 100 a 199</EstratoDescripcion>
+	</Estratos.EstratosItem>
+	<Estratos.EstratosItem xmlns="KBSNIG">
+		<EstratoCodigo>5</EstratoCodigo>
+		<EstratoDescripcion>4) 200 a 499</EstratoDescripcion>
+	</Estratos.EstratosItem>
+	<Estratos.EstratosItem xmlns="KBSNIG">
+		<EstratoCodigo>6</EstratoCodigo>
+		<EstratoDescripcion>5) 500 a 999</EstratoDescripcion>
+	</Estratos.EstratosItem>
+	<Estratos.EstratosItem xmlns="KBSNIG">
+		<EstratoCodigo>7</EstratoCodigo>
+		<EstratoDescripcion>6) 1000 a 2499</EstratoDescripcion>
+	</Estratos.EstratosItem>
+	<Estratos.EstratosItem xmlns="KBSNIG">
+		<EstratoCodigo>8</EstratoCodigo>
+		<EstratoDescripcion>7) 2500 a 4999</EstratoDescripcion>
+	</Estratos.EstratosItem>
+	<Estratos.EstratosItem xmlns="KBSNIG">
+		<EstratoCodigo>9</EstratoCodigo>
+		<EstratoDescripcion>8) 5000 a 9999</EstratoDescripcion>
+	</Estratos.EstratosItem>
+	<Estratos.EstratosItem xmlns="KBSNIG">
+		<EstratoCodigo>10</EstratoCodigo>
+		<EstratoDescripcion>9) 10000 y más</EstratoDescripcion>
+	</Estratos.EstratosItem>
+</Estratos>
+

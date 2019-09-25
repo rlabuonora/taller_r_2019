@@ -1,0 +1,35 @@
+<UsosTierra xmlns="KBSNIG">
+	<UsosTierra.UsosTierraItem xmlns="KBSNIG">
+		<UsoCodigo>1</UsoCodigo>
+		<UsoDescripcion>Praderas artificiales permanentes</UsoDescripcion>
+	</UsosTierra.UsosTierraItem>
+	<UsosTierra.UsosTierraItem xmlns="KBSNIG">
+		<UsoCodigo>2</UsoCodigo>
+		<UsoDescripcion>Campo mejorado</UsoDescripcion>
+	</UsosTierra.UsosTierraItem>
+	<UsosTierra.UsosTierraItem xmlns="KBSNIG">
+		<UsoCodigo>3</UsoCodigo>
+		<UsoDescripcion>Campo fertilizado</UsoDescripcion>
+	</UsosTierra.UsosTierraItem>
+	<UsosTierra.UsosTierraItem xmlns="KBSNIG">
+		<UsoCodigo>4</UsoCodigo>
+		<UsoDescripcion>Cultivos forrajeros anuales</UsoDescripcion>
+	</UsosTierra.UsosTierraItem>
+	<UsosTierra.UsosTierraItem xmlns="KBSNIG">
+		<UsoCodigo>5</UsoCodigo>
+		<UsoDescripcion>Huertas, frutales y viñedos</UsoDescripcion>
+	</UsosTierra.UsosTierraItem>
+	<UsosTierra.UsosTierraItem xmlns="KBSNIG">
+		<UsoCodigo>6</UsoCodigo>
+		<UsoDescripcion>Tierras de labranza</UsoDescripcion>
+	</UsosTierra.UsosTierraItem>
+	<UsosTierra.UsosTierraItem xmlns="KBSNIG">
+		<UsoCodigo>7</UsoCodigo>
+		<UsoDescripcion>Montes artificiales (forestación)</UsoDescripcion>
+	</UsosTierra.UsosTierraItem>
+	<UsosTierra.UsosTierraItem xmlns="KBSNIG">
+		<UsoCodigo>8</UsoCodigo>
+		<UsoDescripcion>Campo natural y rastrojos</UsoDescripcion>
+	</UsosTierra.UsosTierraItem>
+</UsosTierra>
+

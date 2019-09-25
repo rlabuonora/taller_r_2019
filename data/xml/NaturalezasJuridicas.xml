@@ -1,0 +1,59 @@
+<NaturalezasJuridicas xmlns="KBSNIG">
+	<NaturalezasJuridicas.NaturalezasJuridicasItem xmlns="KBSNIG">
+		<NaturalezaJuridicaCodigo>1</NaturalezaJuridicaCodigo>
+		<NaturalezaJuridicaDescripcion>Organismos Oficiales</NaturalezaJuridicaDescripcion>
+	</NaturalezasJuridicas.NaturalezasJuridicasItem>
+	<NaturalezasJuridicas.NaturalezasJuridicasItem xmlns="KBSNIG">
+		<NaturalezaJuridicaCodigo>2</NaturalezaJuridicaCodigo>
+		<NaturalezaJuridicaDescripcion>Sociedad Anónima por acciones nominativas</NaturalezaJuridicaDescripcion>
+	</NaturalezasJuridicas.NaturalezasJuridicasItem>
+	<NaturalezasJuridicas.NaturalezasJuridicasItem xmlns="KBSNIG">
+		<NaturalezaJuridicaCodigo>3</NaturalezaJuridicaCodigo>
+		<NaturalezaJuridicaDescripcion>Sociedad Anónima por acciones al portador</NaturalezaJuridicaDescripcion>
+	</NaturalezasJuridicas.NaturalezasJuridicasItem>
+	<NaturalezasJuridicas.NaturalezasJuridicasItem xmlns="KBSNIG">
+		<NaturalezaJuridicaCodigo>4</NaturalezaJuridicaCodigo>
+		<NaturalezaJuridicaDescripcion>Cooperativa</NaturalezaJuridicaDescripcion>
+	</NaturalezasJuridicas.NaturalezasJuridicasItem>
+	<NaturalezasJuridicas.NaturalezasJuridicasItem xmlns="KBSNIG">
+		<NaturalezaJuridicaCodigo>5</NaturalezaJuridicaCodigo>
+		<NaturalezaJuridicaDescripcion>Persona física</NaturalezaJuridicaDescripcion>
+	</NaturalezasJuridicas.NaturalezasJuridicasItem>
+	<NaturalezasJuridicas.NaturalezasJuridicasItem xmlns="KBSNIG">
+		<NaturalezaJuridicaCodigo>6</NaturalezaJuridicaCodigo>
+		<NaturalezaJuridicaDescripcion>Sociedades comanditarias por acciones nominativas</NaturalezaJuridicaDescripcion>
+	</NaturalezasJuridicas.NaturalezasJuridicasItem>
+	<NaturalezasJuridicas.NaturalezasJuridicasItem xmlns="KBSNIG">
+		<NaturalezaJuridicaCodigo>7</NaturalezaJuridicaCodigo>
+		<NaturalezaJuridicaDescripcion>Sociedades comanditarias por acciones al portador</NaturalezaJuridicaDescripcion>
+	</NaturalezasJuridicas.NaturalezasJuridicasItem>
+	<NaturalezasJuridicas.NaturalezasJuridicasItem xmlns="KBSNIG">
+		<NaturalezaJuridicaCodigo>8</NaturalezaJuridicaCodigo>
+		<NaturalezaJuridicaDescripcion>Sociedad de Hecho</NaturalezaJuridicaDescripcion>
+	</NaturalezasJuridicas.NaturalezasJuridicasItem>
+	<NaturalezasJuridicas.NaturalezasJuridicasItem xmlns="KBSNIG">
+		<NaturalezaJuridicaCodigo>9</NaturalezaJuridicaCodigo>
+		<NaturalezaJuridicaDescripcion>Sociedad Civil</NaturalezaJuridicaDescripcion>
+	</NaturalezasJuridicas.NaturalezasJuridicasItem>
+	<NaturalezasJuridicas.NaturalezasJuridicasItem xmlns="KBSNIG">
+		<NaturalezaJuridicaCodigo>10</NaturalezaJuridicaCodigo>
+		<NaturalezaJuridicaDescripcion>Sociedad de Capital e industria</NaturalezaJuridicaDescripcion>
+	</NaturalezasJuridicas.NaturalezasJuridicasItem>
+	<NaturalezasJuridicas.NaturalezasJuridicasItem xmlns="KBSNIG">
+		<NaturalezaJuridicaCodigo>11</NaturalezaJuridicaCodigo>
+		<NaturalezaJuridicaDescripcion>Condominio de origen sucesorio o ganancial (suceci</NaturalezaJuridicaDescripcion>
+	</NaturalezasJuridicas.NaturalezasJuridicasItem>
+	<NaturalezasJuridicas.NaturalezasJuridicasItem xmlns="KBSNIG">
+		<NaturalezaJuridicaCodigo>12</NaturalezaJuridicaCodigo>
+		<NaturalezaJuridicaDescripcion>Sociedad de Responsabilidad limitada</NaturalezaJuridicaDescripcion>
+	</NaturalezasJuridicas.NaturalezasJuridicasItem>
+	<NaturalezasJuridicas.NaturalezasJuridicasItem xmlns="KBSNIG">
+		<NaturalezaJuridicaCodigo>13</NaturalezaJuridicaCodigo>
+		<NaturalezaJuridicaDescripcion>Otros</NaturalezaJuridicaDescripcion>
+	</NaturalezasJuridicas.NaturalezasJuridicasItem>
+	<NaturalezasJuridicas.NaturalezasJuridicasItem xmlns="KBSNIG">
+		<NaturalezaJuridicaCodigo>14</NaturalezaJuridicaCodigo>
+		<NaturalezaJuridicaDescripcion>Empresa Unipersonal</NaturalezaJuridicaDescripcion>
+	</NaturalezasJuridicas.NaturalezasJuridicasItem>
+</NaturalezasJuridicas>
+

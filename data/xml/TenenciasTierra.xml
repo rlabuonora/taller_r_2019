@@ -1,0 +1,27 @@
+<TenenciasTierra xmlns="KBSNIG">
+	<TenenciasTierra.TenenciasTierraItem xmlns="KBSNIG">
+		<TenenciaCodigo>1</TenenciaCodigo>
+		<TenenciaDescripcion>Propiedad de la Empresa</TenenciaDescripcion>
+	</TenenciasTierra.TenenciasTierraItem>
+	<TenenciasTierra.TenenciasTierraItem xmlns="KBSNIG">
+		<TenenciaCodigo>2</TenenciaCodigo>
+		<TenenciaDescripcion>Arrendada</TenenciaDescripcion>
+	</TenenciasTierra.TenenciasTierraItem>
+	<TenenciasTierra.TenenciasTierraItem xmlns="KBSNIG">
+		<TenenciaCodigo>3</TenenciaCodigo>
+		<TenenciaDescripcion>Pastoreo a 11 meses o régimen similar</TenenciaDescripcion>
+	</TenenciasTierra.TenenciasTierraItem>
+	<TenenciasTierra.TenenciasTierraItem xmlns="KBSNIG">
+		<TenenciaCodigo>4</TenenciaCodigo>
+		<TenenciaDescripcion>Ocupada por la Empresa y socios integrantes.</TenenciaDescripcion>
+	</TenenciasTierra.TenenciasTierraItem>
+	<TenenciasTierra.TenenciasTierraItem xmlns="KBSNIG">
+		<TenenciaCodigo>5</TenenciaCodigo>
+		<TenenciaDescripcion>Medianeria</TenenciaDescripcion>
+	</TenenciasTierra.TenenciasTierraItem>
+	<TenenciasTierra.TenenciasTierraItem xmlns="KBSNIG">
+		<TenenciaCodigo>6</TenenciaCodigo>
+		<TenenciaDescripcion>Ocupada a cualquier otro titulo</TenenciaDescripcion>
+	</TenenciasTierra.TenenciasTierraItem>
+</TenenciasTierra>
+

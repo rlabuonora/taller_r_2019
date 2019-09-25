@@ -1,0 +1,79 @@
+<Departamentos xmlns="KBSNIG">
+	<Departamentos.DepartamentosItem xmlns="KBSNIG">
+		<DepartamentoCodigo>1</DepartamentoCodigo>
+		<DepartamentoDescripcion>ARTIGAS</DepartamentoDescripcion>
+	</Departamentos.DepartamentosItem>
+	<Departamentos.DepartamentosItem xmlns="KBSNIG">
+		<DepartamentoCodigo>2</DepartamentoCodigo>
+		<DepartamentoDescripcion>CANELONES</DepartamentoDescripcion>
+	</Departamentos.DepartamentosItem>
+	<Departamentos.DepartamentosItem xmlns="KBSNIG">
+		<DepartamentoCodigo>3</DepartamentoCodigo>
+		<DepartamentoDescripcion>CERRO LARGO</DepartamentoDescripcion>
+	</Departamentos.DepartamentosItem>
+	<Departamentos.DepartamentosItem xmlns="KBSNIG">
+		<DepartamentoCodigo>4</DepartamentoCodigo>
+		<DepartamentoDescripcion>COLONIA</DepartamentoDescripcion>
+	</Departamentos.DepartamentosItem>
+	<Departamentos.DepartamentosItem xmlns="KBSNIG">
+		<DepartamentoCodigo>5</DepartamentoCodigo>
+		<DepartamentoDescripcion>DURAZNO</DepartamentoDescripcion>
+	</Departamentos.DepartamentosItem>
+	<Departamentos.DepartamentosItem xmlns="KBSNIG">
+		<DepartamentoCodigo>6</DepartamentoCodigo>
+		<DepartamentoDescripcion>FLORES</DepartamentoDescripcion>
+	</Departamentos.DepartamentosItem>
+	<Departamentos.DepartamentosItem xmlns="KBSNIG">
+		<DepartamentoCodigo>7</DepartamentoCodigo>
+		<DepartamentoDescripcion>FLORIDA</DepartamentoDescripcion>
+	</Departamentos.DepartamentosItem>
+	<Departamentos.DepartamentosItem xmlns="KBSNIG">
+		<DepartamentoCodigo>8</DepartamentoCodigo>
+		<DepartamentoDescripcion>LAVALLEJA</DepartamentoDescripcion>
+	</Departamentos.DepartamentosItem>
+	<Departamentos.DepartamentosItem xmlns="KBSNIG">
+		<DepartamentoCodigo>9</DepartamentoCodigo>
+		<DepartamentoDescripcion>MALDONADO</DepartamentoDescripcion>
+	</Departamentos.DepartamentosItem>
+	<Departamentos.DepartamentosItem xmlns="KBSNIG">
+		<DepartamentoCodigo>10</DepartamentoCodigo>
+		<DepartamentoDescripcion>MONTEVIDEO</DepartamentoDescripcion>
+	</Departamentos.DepartamentosItem>
+	<Departamentos.DepartamentosItem xmlns="KBSNIG">
+		<DepartamentoCodigo>11</DepartamentoCodigo>
+		<DepartamentoDescripcion>PAYSANDU</DepartamentoDescripcion>
+	</Departamentos.DepartamentosItem>
+	<Departamentos.DepartamentosItem xmlns="KBSNIG">
+		<DepartamentoCodigo>12</DepartamentoCodigo>
+		<DepartamentoDescripcion>RIO NEGRO</DepartamentoDescripcion>
+	</Departamentos.DepartamentosItem>
+	<Departamentos.DepartamentosItem xmlns="KBSNIG">
+		<DepartamentoCodigo>13</DepartamentoCodigo>
+		<DepartamentoDescripcion>RIVERA</DepartamentoDescripcion>
+	</Departamentos.DepartamentosItem>
+	<Departamentos.DepartamentosItem xmlns="KBSNIG">
+		<DepartamentoCodigo>14</DepartamentoCodigo>
+		<DepartamentoDescripcion>ROCHA</DepartamentoDescripcion>
+	</Departamentos.DepartamentosItem>
+	<Departamentos.DepartamentosItem xmlns="KBSNIG">
+		<DepartamentoCodigo>15</DepartamentoCodigo>
+		<DepartamentoDescripcion>SALTO</DepartamentoDescripcion>
+	</Departamentos.DepartamentosItem>
+	<Departamentos.DepartamentosItem xmlns="KBSNIG">
+		<DepartamentoCodigo>16</DepartamentoCodigo>
+		<DepartamentoDescripcion>SAN JOSE</DepartamentoDescripcion>
+	</Departamentos.DepartamentosItem>
+	<Departamentos.DepartamentosItem xmlns="KBSNIG">
+		<DepartamentoCodigo>17</DepartamentoCodigo>
+		<DepartamentoDescripcion>SORIANO</DepartamentoDescripcion>
+	</Departamentos.DepartamentosItem>
+	<Departamentos.DepartamentosItem xmlns="KBSNIG">
+		<DepartamentoCodigo>18</DepartamentoCodigo>
+		<DepartamentoDescripcion>TACUAREMBO</DepartamentoDescripcion>
+	</Departamentos.DepartamentosItem>
+	<Departamentos.DepartamentosItem xmlns="KBSNIG">
+		<DepartamentoCodigo>19</DepartamentoCodigo>
+		<DepartamentoDescripcion>TREINTA Y TRES</DepartamentoDescripcion>
+	</Departamentos.DepartamentosItem>
+</Departamentos>
+
