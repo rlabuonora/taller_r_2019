@@ -1,5 +1,5 @@
 ---
-title: "R como lenguaje"
+title: "El lenguaje R"
 output:
   xaringan::moon_reader:
     lib_dir: libs
