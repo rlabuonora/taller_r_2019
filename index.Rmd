@@ -14,7 +14,7 @@ options(htmltools.dir.version = FALSE)
   * Data Wrangling
     + [Taller 4 - Dplyr 1](https://data-wrangling--taller-r.netlify.com) - Select, mutate, filter, arrange
     + [Taller 5 - Dplyr 2](https://data-wrangling-2--taller-r.netlify.com) - Merge, gather, spread
-    + [Taller 6 - Factores y fechas](http://rpubs.com/rlabuonora/factors-dates) - Forcats & Lubridate
+    + [Taller 6 - Factores y fechas](https://texto--taller-r.netlify.com) - Forcats & Lubridate
     + [Taller 7 - Texto](http://rpubs.com/rlabuonora/strings) - Stringr
   * Visualización
     + [Taller 7 - Texto ](https://data-vis--taller-r.netlify.com) - Intro a ggplot
