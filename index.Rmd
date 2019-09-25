@@ -13,8 +13,7 @@ output:
 options(htmltools.dir.version = FALSE)
 ```
 
----
-##Componentes
+## Componentes
 
 * Lenguaje
 * Entorno de Desarrollo
@@ -22,15 +21,16 @@ options(htmltools.dir.version = FALSE)
 * Librerías
 
 ---
-## Bibliografía
+# Bibliografía
 
-* R in a Nutshell:
+- R in a Nutshell Parte 2 (Caps 5-10)
 
-<div align="left">
+<div align="right">
 <img src="imgs/nutshell.jpg" width=187.5 height=281.25>
 </div>
 
-*  Parte 2 (Caps 5-10)
+
+
 
 ---
 ## Expresiones
