@@ -1,6 +1,12 @@
 ---
-title: "Taller R"
-
+title: "Factores y Fechas"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
 ---
 
 ```{r setup, include=FALSE}
@@ -8,22 +14,254 @@ options(htmltools.dir.version = FALSE)
 ```
 
 
-## Sesiones
-  * Introducción
-    + [Taller 1](https://intro-r--taller-r.netlify.com/) - Uso básico de R
-  * Data Wrangling
-    + [Taller 4 - Dplyr 1](https://data-wrangling--taller-r.netlify.com) - Select, mutate, filter, arrange
-    + [Taller 5 - Dplyr 2](https://data-wrangling-2--taller-r.netlify.com) - Merge, gather, spread
-    + [Taller 6 - Factores y fechas](http://rpubs.com/rlabuonora/factors-dates) - Forcats & Lubridate
-    + [Taller 7 - Texto](http://rpubs.com/rlabuonora/strings) - Stringr
-  * Visualización
-    + [Taller 7 - Texto ](https://data-vis--taller-r.netlify.com) - Intro a ggplot
-    + [Taller 7 - Texto ](https://data-vis--taller-r.netlify.com) - Gramática de gráficos
-  * Modelado
-    + [Taller 8 - Model] - TODO
-  * Comunicación
-    + [Taller 9 - Comunicación de resultados] - Reportes automáticos con Rmarkdown 
-  * Avanzados
-    + [Taller 2](http://rpubs.com/rlabuonora/rlang) - El lenguaje R
-    + [Taller 9 - GIT ](http://rpubs.com/rlabuonora/git) - Control de Versiones con GIT
-    
+## Factores
+
+Sirven para modelar variables categóricas.
+
+```{r}
+x1 <- c("Dec", "Abr", "Ene", "Mar")
+x1
+
+```
+---
+## Problemas de usar texto
+
+Orden:
+```{r}
+sort(x1)
+```
+
+Errores de tipeo:
+```{r}
+x2 <- c("Dec", "Abr", "Ene", "Marzo")
+```
+
+---
+## Factores
+
+Evitan estos problemas.
+```{r}
+niveles <- c("Ene", "Feb", "Mar", "Abr", 
+             "May", "Jun", "Jul", "Ag",
+            "Set", "Oct", "Nov", "Dec")
+
+```
+
+```{r}
+x1
+meses_factor <- factor(x1, levels=niveles)
+sort(meses_factor)
+```
+
+---
+## Errores
+
+Si hay un error:
+```{r}
+x2
+meses_factor_2 <- factor(x2, levels=niveles)
+meses_factor_2
+```
+
+---
+## Forcats
+
+Como muchos herramientas del `tidyverse`, el objetivo es simplificar y unificar las interfases.
+
+---
+## Ejemplos con una encuesta
+
+```{r, message=FALSE}
+library(dplyr)
+library(forcats)
+```
+```{r}
+head(gss_cat)
+```
+Vamos a usar `ggplot` para graficar los datos, pero podrían ser tablas.
+
+---
+## Barchart con ggplot
+
+```{r, fig.width=7, fig.height=4.5}
+library(ggplot2)
+ggplot(gss_cat, aes(x=race)) + geom_bar()
+```
+
+
+
+```{r}
+ggplot(gss_cat, aes(x=race)) + geom_bar() + 
+                scale_x_discrete(drop=FALSE)
+
+```
+
+---
+## Distribución
+
+Explorar la distribución de `rincome`:
+```{r, fig.width=7.2, fig.height=3.8}
+
+ggplot(gss_cat, aes(x=rincome)) + geom_bar() + 
+       theme(axis.text.x=element_text(angle=90))
+```
+
+---
+## Horas de mirar TV para cada religión
+
+
+```{r, fig.width=7.2, fig.height=3}
+relig <- gss_cat %>% 
+         group_by(relig) %>%
+         summarize(age=mean(age, na.rm=TRUE),
+                   tvhours=mean(tvhours, na.rm=TRUE),
+                   n=n())
+
+ggplot(relig, aes(tvhours, relig)) + geom_point()
+```
+
+---
+## Reordenar las religiones
+
+Como son un factor, puedo usar `fct_reorder`, esta función lleva: un factor y un vector numérico. Devuelve el mismo factor pero con los niveles reordenados.
+
+```{r, fig.width=7.2, fig.height=2.8}
+relig <- relig %>% 
+         mutate(relig_factor = fct_reorder(relig, tvhours))
+
+ggplot(relig, aes(tvhours, relig_factor)) + geom_point()
+ 
+```
+
+---
+
+Tangente, en el libro está así:
+
+```{r}
+ggplot(relig, aes(tvhours, fct_reorder(relig, tvhours))) + 
+       geom_point()
+
+```
+
+---
+## Otra variable
+
+```{r, fig.width=7.2, fig.height=2.8}
+rincome <- gss_cat %>%
+           group_by(rincome) %>%
+           summarize(age = mean(age, na.rm=TRUE),
+                     tvhours = mean(tvhours, na.rm=TRUE),
+                     n=n())
+
+ggplot(rincome, aes(tvhours, rincome)) + 
+       geom_point()  
+```
+
+---
+## El orden de los factores...
+
+No tiene sentido reordenarlos por otra variable como en el caso anterior. Sin embargo, podemos querer mandar algunos para adelante para resaltarlos:
+```{r, fig.width=7.2, fig.height=3.2}
+ggplot(rincome, aes(tvhours, relevel(rincome, "Not applicable"))) + 
+       geom_point()
+```
+
+---
+## Reordenar por frecuencia (`fct_infreq`)
+
+```{r, fig.width=7.2, fig.height=3.2}
+gss_cat %>%
+        mutate(marital = marital %>% fct_infreq() ) %>%
+
+ggplot(aes(marital)) + geom_bar()
+```
+
+---
+## Reordenar por frecuencia (`fct_infreq`)
+
+`fct_rev` lo revierte:
+
+```{r, fig.width=7.2, fig.height=4}
+gss_cat %>%
+mutate(marital = marital %>% fct_infreq() %>% fct_rev()) %>%
+
+ggplot(aes(marital)) + geom_bar()
+```
+
+---
+## Recodificar los factores
+
+```{r}
+gss_cat %>% count(partyid)
+```
+
+---
+## Recodificar los factores (`fct_recode`)
+
+```{r, eval=FALSE}
+gss_cat %>% 
+  mutate(partyid = fct_recode(partyid,
+         "Republican, strong" = "Strong republican",
+         "Republican, weak" = "Not str republican",
+         "Independent, near rep" = "Ind,near rep",
+         "Independent, near dem" = "Ind,near dem",
+         "Democrat, weak" = "Not str democrat",
+         "Democrat, strong" = "Strong democrat")) %>% 
+  count(partyid) 
+```
+
+---
+
+```{r, eval=FALSE}
+count(partyid) 
+```
+
+```{r, echo=FALSE}
+gss_cat %>% 
+  mutate(partyid = fct_recode(partyid,
+         "Republican, strong" = "Strong republican",
+         "Republican, weak" = "Not str republican",
+         "Independent, near rep" = "Ind,near rep",
+         "Independent, near dem" = "Ind,near dem",
+         "Democrat, weak" = "Not str democrat",
+         "Democrat, strong" = "Strong democrat")) %>% 
+  count(partyid) 
+```
+
+---
+## Agrupaciones (`fct_collapse`)
+
+
+```{r}
+gss_cat %>%
+  mutate(partyid = fct_collapse(partyid,
+         other = c("No answer", "Don't know", "Other party"),
+         rep = c("Strong republican", "Not str republican"),
+         ind = c("Ind,near rep", "Independent", "Ind,near dem"),
+         dem = c("Not str democrat", "Strong democrat"))) %>%
+  count(partyid)
+```
+
+---
+## Agrupaciones (`fct_lump`)
+
+Colapsa los factores chicos en un "otros".
+
+```{r, eval=FALSE}
+gss_cat %>%
+  mutate(relig = fct_lump(relig, n = 10, other_level="otros")) %>%
+  count(relig, sort = TRUE)
+```
+
+
+```{r, eval=FALSE}
+count(relig, sort = TRUE)
+```
+
+```{r, echo=FALSE}
+gss_cat %>%
+  mutate(relig = fct_lump(relig, n = 10, other_level="otros")) %>%
+  count(relig, sort = TRUE)
+```
+
+
