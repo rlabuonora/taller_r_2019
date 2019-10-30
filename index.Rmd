@@ -1,8 +1,18 @@
 ---
 title: "Taller R"
 output:
-  tufte::tufte_html: default
+  tufte::tufte_html:
+  css: "estilo.css"
+  
+  
 ---
+
+
+<style>
+    h1 {
+        color: red;
+    }
+</style>
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
