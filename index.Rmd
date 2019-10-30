@@ -1,26 +1,17 @@
 ---
 title: "Taller R"
-output:
-  tufte::tufte_html:
-  css: "estilo.css"
-  
-  
 ---
-
-
 <style>
-    li {
-        width: 500px;
-        margin: 10px;
-    }
+    <!-- ul { -->
+    <!--     width: 500px; -->
+    <!--     margin: 10px; -->
+    <!-- } -->
 </style>
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 ```
 
-
-## Sesiones
   * Introducción
     + [Taller 1](https://intro-r--taller-r.netlify.com/) - Uso básico de R
   * Data Wrangling
