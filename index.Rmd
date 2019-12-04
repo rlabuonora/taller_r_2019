@@ -11,6 +11,7 @@ output:
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
+library(dplyr)
 ```
 
 # Distintos tipos de mapa
@@ -24,10 +25,42 @@ options(htmltools.dir.version = FALSE)
 
 - Es un tipo de mapa estático donde mapeamos el color del área a alguna variable
 
-![choro](./imgs/choropleth.jpg)
+
+![choro](imgs/mvd.png)
 ---
-# Información
+# Información Necesaria
 
-- Las formas de las áreas (departamentos de Uruguay, localidades de Montevideo, países)
+- Las formas de las áreas (departamentos de Uruguay, localidades de Montevideo, países).
 
-- La variable que queremos graficar
+- La variable que queremos graficar.
+
+---
+
+# Formas
+
+- Las formas de las áreas geográficas que necesitamos provienen de sistemas de información cartográficos.
+
+- En Uruguay, el INE [publica mapas](http://www.ine.gub.uy/web/guest/vectoriales) de los deptos, las localidades y los segmentos censales.
+
+---
+
+
+
+---
+
+# Datos
+
+```{r}
+library(readr)
+
+
+df <- read_tsv("data/data.csv", col_names = c("depto", "B", "n")) %>% 
+  select(depto, n)
+
+head(df)
+```
+
+
+# Consejos
+
+- Elegir colores [Rcolorbrewer](http://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3)

@@ -28,13 +28,65 @@ class: center, middle, inverse, title-slide
 
 - Es un tipo de mapa estático donde mapeamos el color del área a alguna variable
 
-![choro](./imgs/choropleth.jpg)
+
+![choro](imgs/mvd.png)
 ---
-# Información
+# Información Necesaria
 
-- Las formas de las áreas (departamentos de Uruguay, localidades de Montevideo, países)
+- Las formas de las áreas (departamentos de Uruguay, localidades de Montevideo, países).
 
-- La variable que queremos graficar
+- La variable que queremos graficar.
+
+---
+
+# Formas
+
+- Las formas de las áreas geográficas que necesitamos provienen de sistemas de información cartográficos.
+
+- En Uruguay, el INE [publica mapas](http://www.ine.gub.uy/web/guest/vectoriales)
+
+---
+
+# Datos
+
+
+```r
+library(readr)
+
+
+df &lt;- read_tsv("data/data.csv", col_names = c("depto", "B", "n")) %&gt;% 
+  select(depto, n)
+```
+
+```
+## Parsed with column specification:
+## cols(
+##   depto = col_character(),
+##   B = col_logical(),
+##   n = col_double()
+## )
+```
+
+```r
+head(df)
+```
+
+```
+## # A tibble: 6 x 2
+##   depto              n
+##   &lt;chr&gt;          &lt;dbl&gt;
+## 1 12, Río Negro,   433
+## 2 5, Colonia,      578
+## 3 1, Montevideo,   646
+## 4 10, Maldonado,   679
+## 5 7, Flores,       493
+## 6 17, Soriano,     446
+```
+
+
+# Consejos
+
+- Elegir colores [Rcolorbrewer](http://colorbrewer2.org/#type=sequential&amp;scheme=BuGn&amp;n=3)
     </textarea>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
