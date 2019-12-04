@@ -1,33 +1,33 @@
 ---
-title: "Taller R"
+title: "Dibujando Mapas con R"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
 ---
-<style>
-    <!-- ul { -->
-    <!--     width: 500px; -->
-    <!--     margin: 10px; -->
-    <!-- } -->
-</style>
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 ```
 
-  * Introducción
-    + [Taller 1](https://intro-r--taller-r.netlify.com/) - Uso básico de R
-  * Data Wrangling
-    + [Taller 2 - Data Wrangling I](https://data-wrangling--taller-r.netlify.com) - select(), mutate(), filter(), arrange().
-    + [Taller 3 - Data Wrangling II](https://data-wrangling-2--taller-r.netlify.com) - merge(), gather(), spread().
-    + [Taller 4 - Data Wrangling III: Factores y fechas](https://factors_dates--taller-r.netlify.com) - Forcats & Lubridate
-    + [Taller 5 - Data Wrangling IV: Texto](https://texto--taller-r.netlify.com) - Stringr
-  * Visualización
-    + [Taller 6 - Visualización I ](https://data-vis--taller-r.netlify.com) - Intro a ggplot
-    + [Taller 7 - Visualización II ](https://data-vis--taller-r.netlify.com) - Gramática de gráficos
-  * Modelado
-    + [Taller 8 - Model] - TODO
-  * Comunicación
-    + [Taller 9 - Comunicación de resultados] - Reportes automáticos con Rmarkdown 
-  * Avanzados
-    + [Taller 10](https://rlang--taller-r.netlify.com) - El lenguaje R
-    + [Taller 11](https://purrr--taller-r.netlify.com) - Iterando con purrr
-    + [Taller 11 - GIT ](http://rpubs.com/rlabuonora/git) - Control de Versiones con GIT
-    
+# Distintos tipos de mapa
+
+- Interactivos (`leaflet` + `shiny`)
+- Estáticos (`ggmap`, `tmap`)
+
+---
+
+# Choropleth
+
+- Es un tipo de mapa estático donde mapeamos el color del área a alguna variable
+
+![choro](./imgs/choropleth.jpg)
+---
+# Información
+
+- Las formas de las áreas (departamentos de Uruguay, localidades de Montevideo, países)
+
+- La variable que queremos graficar
