@@ -43,7 +43,7 @@ class: center, middle, inverse, title-slide
 
 - Las formas de las áreas geográficas que necesitamos provienen de sistemas de información cartográficos.
 
-- En Uruguay, el INE [publica mapas](http://www.ine.gub.uy/web/guest/vectoriales)
+- En Uruguay, el INE [publica mapas](http://www.ine.gub.uy/web/guest/vectoriales) de los deptos, las localidades y los segmentos censales.
 
 ---
 
@@ -54,39 +54,227 @@ class: center, middle, inverse, title-slide
 library(readr)
 
 
-df &lt;- read_tsv("data/data.csv", col_names = c("depto", "B", "n")) %&gt;% 
-  select(depto, n)
+df &lt;- read_csv("data/data.csv", col_names = c("id_depto", "depto", "n", "x")) %&gt;% 
+  select(1:3)
 ```
 
 ```
 ## Parsed with column specification:
 ## cols(
+##   id_depto = col_double(),
 ##   depto = col_character(),
-##   B = col_logical(),
-##   n = col_double()
+##   n = col_double(),
+##   x = col_character()
 ## )
 ```
+
+---
+
+# Ver objeto 
+
 
 ```r
 head(df)
 ```
 
 ```
-## # A tibble: 6 x 2
-##   depto              n
-##   &lt;chr&gt;          &lt;dbl&gt;
-## 1 12, Río Negro,   433
-## 2 5, Colonia,      578
-## 3 1, Montevideo,   646
-## 4 10, Maldonado,   679
-## 5 7, Flores,       493
-## 6 17, Soriano,     446
+## # A tibble: 6 x 3
+##   id_depto depto          n
+##      &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt;
+## 1       12 Río Negro    433
+## 2        5 Colonia      578
+## 3        1 Montevideo   646
+## 4       10 Maldonado    679
+## 5        7 Flores       493
+## 6       17 Soriano      446
+```
+
+---
+# Mapa
+
+Usamos `sf`, una librería para manejar datos geográficos (puede ser difícil de instalar)
+
+
+```r
+library(sf)
+```
+
+```
+## Linking to GEOS 3.5.0, GDAL 2.1.0, PROJ 4.8.0
+```
+
+```r
+# Cargar mapa
+mapa_deptos &lt;- st_read('shps/ine_depto.shp')
+```
+
+```
+## Reading layer `ine_depto' from data source `/home/rlabuonora/taller_R_2019/shps/ine_depto.shp' using driver `ESRI Shapefile'
+## Simple feature collection with 20 features and 5 fields
+## geometry type:  MULTIPOLYGON
+## dimension:      XY
+## bbox:           xmin: 366582.2 ymin: 6127919 xmax: 858252.1 ymax: 6671738
+## epsg (SRID):    NA
+## proj4string:    NA
+```
+
+---
+
+# Estructura
+
+- Es un `data.frame` con atributos normales (AREA_KM2, PERIMETER, etc.) y atributos geométricos (`geometry`). 
+
+- En este caso es un `sfc_MULTIPOLYGON`.
+
+
+
+```r
+str(mapa_deptos)
+```
+
+```
+## Classes 'sf' and 'data.frame':	20 obs. of  6 variables:
+##  $ AREA_KM2_ : int  530 11928 4536 6106 11643 10417 10016 13922 9282 9370 ...
+##  $ PERIMETER : num  202137 722386 404535 431056 821325 ...
+##  $ DEPTO     : int  1 2 3 5 6 8 9 11 12 13 ...
+##  $ NOMBRE    : Factor w/ 20 levels "ARTIGAS","CANELONES",..: 11 1 2 4 5 7 8 12 13 14 ...
+##  $ CDEPTO_ISO: Factor w/ 19 levels "UYAR","UYCA",..: 10 1 2 4 5 6 8 11 12 14 ...
+##  $ geometry  :sfc_MULTIPOLYGON of length 20; first list element: List of 15
+##   ..$ :List of 1
+##   .. ..$ : num [1:9, 1:2] 579197 579200 579204 579203 579192 ...
+##   ..$ :List of 1
+##   .. ..$ : num [1:7, 1:2] 578818 578818 578811 578809 578814 ...
+##   ..$ :List of 1
+##   .. ..$ : num [1:12, 1:2] 579256 579259 579264 579275 579277 ...
+##   ..$ :List of 1
+##   .. ..$ : num [1:5, 1:2] 579141 579133 579132 579141 579141 ...
+##   ..$ :List of 1
+##   .. ..$ : num [1:6, 1:2] 579992 579982 579982 580002 579992 ...
+##   ..$ :List of 1
+##   .. ..$ : num [1:12, 1:2] 579881 579881 579880 579878 579877 ...
+##   ..$ :List of 1
+##   .. ..$ : num [1:10, 1:2] 579974 579977 579976 579967 579963 ...
+##   ..$ :List of 1
+##   .. ..$ : num [1:6, 1:2] 579948 579952 579954 579951 579948 ...
+##   ..$ :List of 1
+##   .. ..$ : num [1:11, 1:2] 579968 579967 579962 579958 579954 ...
+##   ..$ :List of 1
+##   .. ..$ : num [1:8, 1:2] 579961 579960 579955 579952 579949 ...
+##   ..$ :List of 1
+##   .. ..$ : num [1:8, 1:2] 580230 580220 580215 580212 580216 ...
+##   ..$ :List of 1
+##   .. ..$ : num [1:20, 1:2] 580140 580140 580147 580148 580149 ...
+##   ..$ :List of 1
+##   .. ..$ : num [1:13, 1:2] 580162 580167 580168 580165 580167 ...
+##   ..$ :List of 1
+##   .. ..$ : num [1:281, 1:2] 579904 579905 579908 579909 579910 ...
+##   ..$ :List of 2
+##   .. ..$ : num [1:18210, 1:2] 586463 586465 586462 586454 586438 ...
+##   .. ..$ : num [1:33, 1:2] 579020 579032 579039 579065 579072 ...
+##   ..- attr(*, "class")= chr  "XY" "MULTIPOLYGON" "sfg"
+##  - attr(*, "sf_column")= chr "geometry"
+##  - attr(*, "agr")= Factor w/ 3 levels "constant","aggregate",..: NA NA NA NA NA
+##   ..- attr(*, "names")= chr  "AREA_KM2_" "PERIMETER" "DEPTO" "NOMBRE" ...
+```
+---
+
+# Objetos geográficos
+
+- Hay varios tipos de objetos geométricos que se usan para representar atributos geográficos. 
+- Ver [el capítulo 2 de Geocomputation with R](https://geocompr.robinlovelace.net/spatial-class.html#intro-sf) para más información.
+---
+
+
+```r
+# Plotear
+plot(st_geometry(mapa_deptos))
+```
+
+![](index_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
+
+---
+
+# Pegar los datos
+
+Como columnas en el `data.frame` del mapa (depto, n):
+
+```r
+mapa_deptos &lt;- mapa_deptos %&gt;% 
+  left_join(df, by=c("DEPTO"="id_depto"))
+```
+---
+
+
+
+```r
+mapa_deptos
+```
+
+```
+## Simple feature collection with 20 features and 7 fields
+## geometry type:  MULTIPOLYGON
+## dimension:      XY
+## bbox:           xmin: 366582.2 ymin: 6127919 xmax: 858252.1 ymax: 6671738
+## epsg (SRID):    NA
+## proj4string:    NA
+## First 10 features:
+##    AREA_KM2_ PERIMETER DEPTO     NOMBRE CDEPTO_ISO      depto   n
+## 1        530  202137.0     1 MONTEVIDEO       UYMO Montevideo 646
+## 2      11928  722385.9     2    ARTIGAS       UYAR    Artigas 311
+## 3       4536  404534.8     3  CANELONES       UYCA  Canelones 372
+## 4       6106  431056.4     5    COLONIA       UYCO    Colonia 578
+## 5      11643  821325.4     6    DURAZNO       UYDU    Durazno 393
+## 6      10417  669409.9     8    FLORIDA       UYFD    Florida 469
+## 7      10016  663660.0     9  LAVALLEJA       UYLA  Lavalleja 388
+## 8      13922  712419.7    11   PAYSANDU       UYPA   Paysandú 416
+## 9       9282  754054.3    12  RIO NEGRO       UYRN  Río Negro 433
+## 10      9370  698960.4    13     RIVERA       UYRV     Rivera 318
+##                          geometry
+## 1  MULTIPOLYGON (((579197 6136...
+## 2  MULTIPOLYGON (((441318.2 66...
+## 3  MULTIPOLYGON (((587667.2 61...
+## 4  MULTIPOLYGON (((446550.3 61...
+## 5  MULTIPOLYGON (((545016.7 62...
+## 6  MULTIPOLYGON (((547183.6 62...
+## 7  MULTIPOLYGON (((729873.6 62...
+## 8  MULTIPOLYGON (((571956.7 64...
+## 9  MULTIPOLYGON (((401012.3 63...
+## 10 MULTIPOLYGON (((638452.2 65...
 ```
 
 
-# Consejos
 
-- Elegir colores [Rcolorbrewer](http://colorbrewer2.org/#type=sequential&amp;scheme=BuGn&amp;n=3)
+---
+# Choropleth con tmap
+
+- Mapeamos el color del polígono 
+
+
+```r
+# tmap
+# https://cran.r-project.org/web/packages/tmap/vignettes/tmap-getstarted.html
+
+library(tmap)
+
+mapa &lt;- tm_shape(mapa_deptos) +
+  tm_borders() + 
+  tm_polygons("n")
+```
+
+---
+
+
+# Mapa
+
+
+```r
+mapa
+```
+
+![](index_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
+
+
+-
     </textarea>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
