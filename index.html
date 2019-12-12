@@ -15,9 +15,732 @@ class: center, middle, inverse, title-slide
 ---
 
 
+&lt;style&gt;
+img   {
+  height: 400px;
+
+}
+&lt;/style&gt;
 
 
-Ejemplo
+
+# Programación funcional
+
+- Es un _paradigma_ de lenguajes de programación.
+- Hay lenguajes funcionales (Haskell, F#)
+- Hay lenguajes orientados a objetos (Ruby, Java)
+- La mayor parte de los lenguajes son mixtos y combinan cosas de ambos paradigmas.
+
+---
+
+# Material
+
+.pull-left[
+  [Advanced R (Hadley Wickham)](https://adv-r.hadley.nz/fp.html)
+
+]
+
+
+.pull-right[
+
+  ![Libro](https://d33wubrfki0l68.cloudfront.net/565916198b0be51bf88b36f94b80c7ea67cafe7c/7f70b/cover.png)
+
+]
+  
+
+
+
+---
+# R
+
+- R tiene objetos pero tira mas bien para lo funcional
+- R base tiene `lapply`, `vapply`, etc.
+- Purrr es una librería que busca hacer más homogénea la API
+
+---
+# R funcional
+
+- Usa funciones que tienen funciones como argumento y/o devuelven funciones como resultado.
+- Esto implica que las puedo poner en variables
+
+
+
+```r
+library(scales)
+f &lt;- number_format(big.mark = ".", decimal.mark=",")
+f(c(1e6, 2e6))
+```
+
+```
+## [1] "1.000.000" "2.000.000"
+```
+---
+# Otro ejemplo
+
+
+```r
+vapply(mpg, is.numeric, logical(1))
+```
+
+```
+## manufacturer        model        displ         year          cyl 
+##        FALSE        FALSE         TRUE         TRUE         TRUE 
+##        trans          drv          cty          hwy           fl 
+##        FALSE        FALSE         TRUE         TRUE        FALSE 
+##        class 
+##        FALSE
+```
+---
+# Map
+
+- `lapply` es una implementación del idioma funcional map.
+- Es el principal idioma del paradigma
+- Implica tomar una colección de elementos, aplicarles una función y devolver la colección de resultados:
+
+---
+![map](https://d33wubrfki0l68.cloudfront.net/f0494d020aa517ae7b1011cea4c4a9f21702df8b/2577b/diagrams/functionals/map.png)
+---
+# Map
+
+- La gran ventaja que tiene es separar lo que hacemos con cada elemento del proceso de iterar por una colección de elementos.
+
+---
+
+# En base R
+
+
+```r
+my_map &lt;- function(x, f) {
+  out &lt;- vector("list", length(x))
+  for (i in seq_along(x)) {
+    out[[i]] &lt;- f(x[[i]])
+  }
+  out
+}
+
+my_map(mpg, typeof)
+```
+
+```
+## [[1]]
+## [1] "character"
+## 
+## [[2]]
+## [1] "character"
+## 
+## [[3]]
+## [1] "double"
+## 
+## [[4]]
+## [1] "integer"
+## 
+## [[5]]
+## [1] "integer"
+## 
+## [[6]]
+## [1] "character"
+## 
+## [[7]]
+## [1] "character"
+## 
+## [[8]]
+## [1] "integer"
+## 
+## [[9]]
+## [1] "integer"
+## 
+## [[10]]
+## [1] "character"
+## 
+## [[11]]
+## [1] "character"
+```
+
+# Más flexibilidad con ...
+
+
+- `...` es una forma de pasar argumentos a otras funciones
+
+
+```r
+my_map_2 &lt;- function(x, f, ...) {
+  out &lt;- vector("list", length(x))
+  for (i in seq_along(x)) {
+    out[[i]] &lt;- f(x[[i]], ...)
+  }
+  out
+}
+
+my_map_2(mpg, head, 1)
+```
+
+```
+## [[1]]
+## [1] "audi"
+## 
+## [[2]]
+## [1] "a4"
+## 
+## [[3]]
+## [1] 1.8
+## 
+## [[4]]
+## [1] 1999
+## 
+## [[5]]
+## [1] 4
+## 
+## [[6]]
+## [1] "auto(l5)"
+## 
+## [[7]]
+## [1] "f"
+## 
+## [[8]]
+## [1] 18
+## 
+## [[9]]
+## [1] 29
+## 
+## [[10]]
+## [1] "p"
+## 
+## [[11]]
+## [1] "compact"
+```
+---
+# Purrr
+
+Es parecido pero más flexible
+
+
+```r
+purrr::map(mpg, head, 1)
+```
+
+```
+## $manufacturer
+## [1] "audi"
+## 
+## $model
+## [1] "a4"
+## 
+## $displ
+## [1] 1.8
+## 
+## $year
+## [1] 1999
+## 
+## $cyl
+## [1] 4
+## 
+## $trans
+## [1] "auto(l5)"
+## 
+## $drv
+## [1] "f"
+## 
+## $cty
+## [1] 18
+## 
+## $hwy
+## [1] 29
+## 
+## $fl
+## [1] "p"
+## 
+## $class
+## [1] "compact"
+```
+---
+
+# Otro concepto funcional
+
+Funciones anónimas
+
+
+```r
+map(mpg, function(x) length(unique(x)))
+```
+
+```
+## $manufacturer
+## [1] 15
+## 
+## $model
+## [1] 38
+## 
+## $displ
+## [1] 35
+## 
+## $year
+## [1] 2
+## 
+## $cyl
+## [1] 4
+## 
+## $trans
+## [1] 10
+## 
+## $drv
+## [1] 3
+## 
+## $cty
+## [1] 21
+## 
+## $hwy
+## [1] 27
+## 
+## $fl
+## [1] 5
+## 
+## $class
+## [1] 7
+```
+---
+Es lo mismo que
+
+
+```r
+funcion &lt;- function(x) length(unique(x))
+map(mpg, funcion)
+```
+
+```
+## $manufacturer
+## [1] 15
+## 
+## $model
+## [1] 38
+## 
+## $displ
+## [1] 35
+## 
+## $year
+## [1] 2
+## 
+## $cyl
+## [1] 4
+## 
+## $trans
+## [1] 10
+## 
+## $drv
+## [1] 3
+## 
+## $cty
+## [1] 21
+## 
+## $hwy
+## [1] 27
+## 
+## $fl
+## [1] 5
+## 
+## $class
+## [1] 7
+```
+---
+
+```r
+map(mpg, ~length(unique(.x)))
+```
+
+```
+## $manufacturer
+## [1] 15
+## 
+## $model
+## [1] 38
+## 
+## $displ
+## [1] 35
+## 
+## $year
+## [1] 2
+## 
+## $cyl
+## [1] 4
+## 
+## $trans
+## [1] 10
+## 
+## $drv
+## [1] 3
+## 
+## $cty
+## [1] 21
+## 
+## $hwy
+## [1] 27
+## 
+## $fl
+## [1] 5
+## 
+## $class
+## [1] 7
+```
+
+
+---
+# Map a fondo 
+
+- En base a esta idea, hay formas de darle flexibilidad.
+
+---
+# Devolver un vector en vez de una lista
+
+`map_*` convierte la lista que devuelve map a un vector de tipo `*`.
+
+
+```r
+map_chr(mtcars, typeof)
+```
+
+```
+##      mpg      cyl     disp       hp     drat       wt     qsec       vs 
+## "double" "double" "double" "double" "double" "double" "double" "double" 
+##       am     gear     carb 
+## "double" "double" "double"
+```
+
+
+```r
+map_lgl(mtcars, is.numeric)
+```
+
+```
+##  mpg  cyl disp   hp drat   wt qsec   vs   am gear carb 
+## TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
+```
+
+
+---
+
+# Extraer (sub)elementos
+
+
+```r
+list(c(1, 2), c("A", "B"), c("uno", "dos")) %&gt;% 
+  map(2)
+```
+
+```
+## [[1]]
+## [1] 2
+## 
+## [[2]]
+## [1] "B"
+## 
+## [[3]]
+## [1] "dos"
+```
+
+---
+
+# Pregunta
+Esto no funciona, ¿por qué?
+
+```r
+map_dbl(1:3, as.character)
+```
+
+```
+## Error: Can't coerce element 1 from a character to a double
+```
+
+---
+# Demo
+
+
+```r
+by_cyl &lt;- split(mtcars, mtcars$cyl)
+
+by_cyl %&gt;% 
+  map(~ lm(mpg~wt, data = .x)) %&gt;%
+  map(coef) %&gt;% 
+  map_dbl(2)
+```
+
+```
+##         4         6         8 
+## -5.647025 -2.780106 -2.192438
+```
+---
+# Ejercicio
+
+Aplicar `bootstrap` 10 veces a mtcars, estimar la regresión `\(mpg = b_0 + b_1 disp\)` y obtener el `\(R^2\)` de cada iteración. 
+
+
+```r
+bootstrap &lt;- function(df) {
+  df[sample(nrow(df), replace = TRUE), , drop = FALSE]
+}
+```
+
+
+---
+# Solución
+
+
+```r
+map(1:10, ~bootstrap(mtcars)) %&gt;% 
+  map(~lm(mpg~disp, data = .x)) %&gt;% 
+  map(summary) %&gt;% 
+  map("r.squared")
+```
+
+```
+## [[1]]
+## [1] 0.720828
+## 
+## [[2]]
+## [1] 0.6730742
+## 
+## [[3]]
+## [1] 0.763898
+## 
+## [[4]]
+## [1] 0.6590301
+## 
+## [[5]]
+## [1] 0.7828071
+## 
+## [[6]]
+## [1] 0.7083295
+## 
+## [[7]]
+## [1] 0.7738047
+## 
+## [[8]]
+## [1] 0.6807726
+## 
+## [[9]]
+## [1] 0.7131363
+## 
+## [[10]]
+## [1] 0.6978444
+```
+
+
+---
+
+# Ejercicio 2
+
+Tengo una carpeta llena de xmls:
+
+
+```r
+list.files('data/xml')
+```
+
+```
+##  [1] "Actividades.xml"                          
+##  [2] "Categorias.xml"                           
+##  [3] "DatosProduccionLecheEnEstablecimiento.xml"
+##  [4] "Departamentos.xml"                        
+##  [5] "Especies.xml"                             
+##  [6] "Estratos.xml"                             
+##  [7] "Giros.xml"                                
+##  [8] "MejoramientosTierra.xml"                  
+##  [9] "NaturalezasJuridicas.xml"                 
+## [10] "Productos.xml"                            
+## [11] "TenenciasTierra.xml"                      
+## [12] "TiposProducciones.xml"                    
+## [13] "UsosTierra.xml"
+```
+Traducirlo a `csv`
+
+---
+# Pistas
+
+Los archivos xml tienen forma de árbol:
+
+```bash
+cat 'data/xml/TenenciasTierra.xml'
+```
+
+```
+## &lt;TenenciasTierra xmlns="KBSNIG"&gt;
+## 	&lt;TenenciasTierra.TenenciasTierraItem xmlns="KBSNIG"&gt;
+## 		&lt;TenenciaCodigo&gt;1&lt;/TenenciaCodigo&gt;
+## 		&lt;TenenciaDescripcion&gt;Propiedad de la Empresa&lt;/TenenciaDescripcion&gt;
+## 	&lt;/TenenciasTierra.TenenciasTierraItem&gt;
+## 	&lt;TenenciasTierra.TenenciasTierraItem xmlns="KBSNIG"&gt;
+## 		&lt;TenenciaCodigo&gt;2&lt;/TenenciaCodigo&gt;
+## 		&lt;TenenciaDescripcion&gt;Arrendada&lt;/TenenciaDescripcion&gt;
+## 	&lt;/TenenciasTierra.TenenciasTierraItem&gt;
+## 	&lt;TenenciasTierra.TenenciasTierraItem xmlns="KBSNIG"&gt;
+## 		&lt;TenenciaCodigo&gt;3&lt;/TenenciaCodigo&gt;
+## 		&lt;TenenciaDescripcion&gt;Pastoreo a 11 meses o régimen similar&lt;/TenenciaDescripcion&gt;
+## 	&lt;/TenenciasTierra.TenenciasTierraItem&gt;
+## 	&lt;TenenciasTierra.TenenciasTierraItem xmlns="KBSNIG"&gt;
+## 		&lt;TenenciaCodigo&gt;4&lt;/TenenciaCodigo&gt;
+## 		&lt;TenenciaDescripcion&gt;Ocupada por la Empresa y socios integrantes.&lt;/TenenciaDescripcion&gt;
+## 	&lt;/TenenciasTierra.TenenciasTierraItem&gt;
+## 	&lt;TenenciasTierra.TenenciasTierraItem xmlns="KBSNIG"&gt;
+## 		&lt;TenenciaCodigo&gt;5&lt;/TenenciaCodigo&gt;
+## 		&lt;TenenciaDescripcion&gt;Medianeria&lt;/TenenciaDescripcion&gt;
+## 	&lt;/TenenciasTierra.TenenciasTierraItem&gt;
+## 	&lt;TenenciasTierra.TenenciasTierraItem xmlns="KBSNIG"&gt;
+## 		&lt;TenenciaCodigo&gt;6&lt;/TenenciaCodigo&gt;
+## 		&lt;TenenciaDescripcion&gt;Ocupada a cualquier otro titulo&lt;/TenenciaDescripcion&gt;
+## 	&lt;/TenenciasTierra.TenenciasTierraItem&gt;
+## &lt;/TenenciasTierra&gt;
+## 
+```
+---
+# Resultado
+
+Queremos algo como 
+
+| TenenciaCodigo   |TenenciaDescripcion             | 
+|------------------|:------------------------------:|
+| 1                |  Propiedad de la Empresa       |
+| 2                |  Arrendada                     |
+| 3                |  Pastoreo a 11 meses o régimen similar|
+
+
+---
+# Pistas (2)
+
+`xmlParse` y `xmlToList` para leer los archivos a una lista:
+
+
+```r
+library(XML)
+f &lt;- 'data/xml/TenenciasTierra.xml'
+foo &lt;- xmlParse(f)
+```
+
+```
+## xmlns: URI KBSNIG is not absolute
+## xmlns: URI KBSNIG is not absolute
+## xmlns: URI KBSNIG is not absolute
+## xmlns: URI KBSNIG is not absolute
+## xmlns: URI KBSNIG is not absolute
+## xmlns: URI KBSNIG is not absolute
+## xmlns: URI KBSNIG is not absolute
+```
+
+```r
+baz &lt;- xmlToList(foo)
+baz
+```
+
+```
+## $TenenciasTierra.TenenciasTierraItem
+## $TenenciasTierra.TenenciasTierraItem$TenenciaCodigo
+## [1] "1"
+## 
+## $TenenciasTierra.TenenciasTierraItem$TenenciaDescripcion
+## [1] "Propiedad de la Empresa"
+## 
+## 
+## $TenenciasTierra.TenenciasTierraItem
+## $TenenciasTierra.TenenciasTierraItem$TenenciaCodigo
+## [1] "2"
+## 
+## $TenenciasTierra.TenenciasTierraItem$TenenciaDescripcion
+## [1] "Arrendada"
+## 
+## 
+## $TenenciasTierra.TenenciasTierraItem
+## $TenenciasTierra.TenenciasTierraItem$TenenciaCodigo
+## [1] "3"
+## 
+## $TenenciasTierra.TenenciasTierraItem$TenenciaDescripcion
+## [1] "Pastoreo a 11 meses o régimen similar"
+## 
+## 
+## $TenenciasTierra.TenenciasTierraItem
+## $TenenciasTierra.TenenciasTierraItem$TenenciaCodigo
+## [1] "4"
+## 
+## $TenenciasTierra.TenenciasTierraItem$TenenciaDescripcion
+## [1] "Ocupada por la Empresa y socios integrantes."
+## 
+## 
+## $TenenciasTierra.TenenciasTierraItem
+## $TenenciasTierra.TenenciasTierraItem$TenenciaCodigo
+## [1] "5"
+## 
+## $TenenciasTierra.TenenciasTierraItem$TenenciaDescripcion
+## [1] "Medianeria"
+## 
+## 
+## $TenenciasTierra.TenenciasTierraItem
+## $TenenciasTierra.TenenciasTierraItem$TenenciaCodigo
+## [1] "6"
+## 
+## $TenenciasTierra.TenenciasTierraItem$TenenciaDescripcion
+## [1] "Ocupada a cualquier otro titulo"
+```
+
+---
+# Pistas (3)
+
+- `baz` es una lista
+- cada elemento de `baz` es una fila del data frame
+- los nombres de las columnas son los nombres de cada elemento
+- `basename` y `file_path_sans_ext` para manejar el nombre del archivo
+
+---
+# Solución con for
+
+
+```r
+for (f in list.files("./data/xml", full.names = TRUE)) {
+  foo &lt;- xmlParse(f)
+  baz &lt;- xmlToList(foo)
+  
+  # Iteracion anidada:
+  resultado &lt;- data.frame()
+  for (linea in baz) {
+    vec &lt;- data.frame(c(linea[1], linea[2]))
+    resultado &lt;- rbind(resultado, vec)
+  }
+  # salvar el resultado
+  name &lt;- file_path_sans_ext(basename(f))
+  output &lt;- file.path('data', 'csv', paste0(name, '.csv'))
+  write_csv(resultado, output)
+}
+```
+
+---
+# Usando purrr
+
+---
+# Solución
+
+
+```r
+library(XML)
+library(dplyr)
+library(readr)
+library(purrr)
+library(tools)
+
+convertir &lt;- function(path) {
+  
+  name &lt;- file_path_sans_ext(basename(path))
+  name &lt;- file.path('data', 'csv', paste0(name, '.csv'))
+  
+  xmlParse(path) %&gt;% # abrir el archivo
+    xmlToList %&gt;%    # convertir xml a lista
+    purrr::map_df(~as.vector(.x)) %&gt;%  # convertir a data frame
+    write_csv(name) # escribir a csv con el nombre correcto
+}
+
+
+list.files('./data/xml/', full.names=TRUE) %&gt;%
+  purrr::walk(convertir)
+```
+---
+
+# Moraleja
+
+Para resolver un problema para una colección (en este caso una colección de archivos), puede ser útil tener una función que lo resuelve para un solo elemento y después usar `map` para extenderlo al resto de los elementos.
     </textarea>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({

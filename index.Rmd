@@ -9,8 +9,322 @@ output:
       countIncrementalSlides: false
 ---
 
+<style>
+img   {
+  height: 400px;
+
+}
+</style>
+
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
+library(tidyverse)
+
 ```
 
-Ejemplo
+# Programación funcional
+
+- Es un _paradigma_ de lenguajes de programación.
+- Hay lenguajes funcionales (Haskell, F#)
+- Hay lenguajes orientados a objetos (Ruby, Java)
+- La mayor parte de los lenguajes son mixtos y combinan cosas de ambos paradigmas.
+
+---
+
+# Material
+
+.pull-left[
+  [Advanced R (Hadley Wickham)](https://adv-r.hadley.nz/fp.html)
+
+]
+
+
+.pull-right[
+
+  ![Libro](https://d33wubrfki0l68.cloudfront.net/565916198b0be51bf88b36f94b80c7ea67cafe7c/7f70b/cover.png)
+
+]
+  
+
+
+
+---
+# R
+
+- R tiene objetos pero tira mas bien para lo funcional
+- R base tiene `lapply`, `vapply`, etc.
+- Purrr es una librería que busca hacer más homogénea la API
+
+---
+# R funcional
+
+- Usa funciones que tienen funciones como argumento y/o devuelven funciones como resultado.
+- Esto implica que las puedo poner en variables
+
+
+```{r message=FALSE, warning=FALSE}
+library(scales)
+f <- number_format(big.mark = ".", decimal.mark=",")
+f(c(1e6, 2e6))
+```
+---
+# Otro ejemplo
+
+```{r }
+vapply(mpg, is.numeric, logical(1))
+```
+---
+# Map
+
+- `lapply` es una implementación del idioma funcional map.
+- Es el principal idioma del paradigma
+- Implica tomar una colección de elementos, aplicarles una función y devolver la colección de resultados:
+
+---
+![map](https://d33wubrfki0l68.cloudfront.net/f0494d020aa517ae7b1011cea4c4a9f21702df8b/2577b/diagrams/functionals/map.png)
+---
+# Map
+
+- La gran ventaja que tiene es separar lo que hacemos con cada elemento del proceso de iterar por una colección de elementos.
+
+---
+
+# En base R
+
+```{r}
+my_map <- function(x, f) {
+  out <- vector("list", length(x))
+  for (i in seq_along(x)) {
+    out[[i]] <- f(x[[i]])
+  }
+  out
+}
+
+my_map(mpg, typeof)
+```
+
+# Más flexibilidad con ...
+
+
+- `...` es una forma de pasar argumentos a otras funciones
+
+```{r}
+my_map_2 <- function(x, f, ...) {
+  out <- vector("list", length(x))
+  for (i in seq_along(x)) {
+    out[[i]] <- f(x[[i]], ...)
+  }
+  out
+}
+
+my_map_2(mpg, head, 1)
+```
+---
+# Purrr
+
+Es parecido pero más flexible
+
+```{r}
+purrr::map(mpg, head, 1)
+```
+---
+
+# Otro concepto funcional
+
+Funciones anónimas
+
+```{r}
+map(mpg, function(x) length(unique(x)))
+```
+---
+Es lo mismo que
+
+```{r}
+funcion <- function(x) length(unique(x))
+map(mpg, funcion)
+```
+---
+```{r}
+map(mpg, ~length(unique(.x)))
+```
+
+
+---
+# Map a fondo 
+
+- En base a esta idea, hay formas de darle flexibilidad.
+
+---
+# Devolver un vector en vez de una lista
+
+`map_*` convierte la lista que devuelve map a un vector de tipo `*`.
+
+```{r}
+map_chr(mtcars, typeof)
+```
+
+```{r}
+map_lgl(mtcars, is.numeric)
+```
+
+
+---
+
+# Extraer (sub)elementos
+
+```{r}
+list(c(1, 2), c("A", "B"), c("uno", "dos")) %>% 
+  map(2)
+```
+
+---
+
+# Pregunta
+Esto no funciona, ¿por qué?
+```{r error = TRUE}
+map_dbl(1:3, as.character)
+```
+
+---
+# Demo
+
+```{r}
+by_cyl <- split(mtcars, mtcars$cyl)
+
+by_cyl %>% 
+  map(~ lm(mpg~wt, data = .x)) %>%
+  map(coef) %>% 
+  map_dbl(2)
+  
+```
+---
+# Ejercicio
+
+Aplicar `bootstrap` 10 veces a mtcars, estimar la regresión $mpg = b_0 + b_1 disp$ y obtener el $R^2$ de cada iteración. 
+
+```{r}
+bootstrap <- function(df) {
+  df[sample(nrow(df), replace = TRUE), , drop = FALSE]
+}
+```
+
+
+---
+# Solución
+
+```{r}
+
+
+map(1:10, ~bootstrap(mtcars)) %>% 
+  map(~lm(mpg~disp, data = .x)) %>% 
+  map(summary) %>% 
+  map("r.squared")
+
+```
+
+
+---
+
+# Ejercicio 2
+
+Tengo una carpeta llena de xmls:
+
+```{r}
+list.files('data/xml')
+```
+Traducirlo a `csv`
+
+---
+# Pistas
+
+Los archivos xml tienen forma de árbol:
+```{bash}
+cat 'data/xml/TenenciasTierra.xml'
+```
+---
+# Resultado
+
+Queremos algo como 
+
+| TenenciaCodigo   |TenenciaDescripcion             | 
+|------------------|:------------------------------:|
+| 1                |  Propiedad de la Empresa       |
+| 2                |  Arrendada                     |
+| 3                |  Pastoreo a 11 meses o régimen similar|
+
+
+---
+# Pistas (2)
+
+`xmlParse` y `xmlToList` para leer los archivos a una lista:
+
+```{r}
+library(XML)
+f <- 'data/xml/TenenciasTierra.xml'
+foo <- xmlParse(f)
+baz <- xmlToList(foo)
+baz
+```
+
+---
+# Pistas (3)
+
+- `baz` es una lista
+- cada elemento de `baz` es una fila del data frame
+- los nombres de las columnas son los nombres de cada elemento
+- `basename` y `file_path_sans_ext` para manejar el nombre del archivo
+
+---
+# Solución con for
+
+```{r eval = FALSE}
+for (f in list.files("./data/xml", full.names = TRUE)) {
+  foo <- xmlParse(f)
+  baz <- xmlToList(foo)
+  
+  # Iteracion anidada:
+  resultado <- data.frame()
+  for (linea in baz) {
+    vec <- data.frame(c(linea[1], linea[2]))
+    resultado <- rbind(resultado, vec)
+  }
+  # salvar el resultado
+  name <- file_path_sans_ext(basename(f))
+  output <- file.path('data', 'csv', paste0(name, '.csv'))
+  write_csv(resultado, output)
+}
+```
+
+---
+# Usando purrr
+
+---
+# Solución
+
+```{r eval = FALSE}
+library(XML)
+library(dplyr)
+library(readr)
+library(purrr)
+library(tools)
+
+convertir <- function(path) {
+  
+  name <- file_path_sans_ext(basename(path))
+  name <- file.path('data', 'csv', paste0(name, '.csv'))
+  
+  xmlParse(path) %>% # abrir el archivo
+    xmlToList %>%    # convertir xml a lista
+    purrr::map_df(~as.vector(.x)) %>%  # convertir a data frame
+    write_csv(name) # escribir a csv con el nombre correcto
+}
+
+
+list.files('./data/xml/', full.names=TRUE) %>%
+  purrr::walk(convertir)
+```
+---
+
+# Moraleja
+
+Para resolver un problema para una colección (en este caso una colección de archivos), puede ser útil tener una función que lo resuelve para un solo elemento y después usar `map` para extenderlo al resto de los elementos.
