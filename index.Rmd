@@ -1,5 +1,5 @@
 ---
-title: "Iterando con Purrr"
+title: "Programación funcional con Purrr"
 output:
   xaringan::moon_reader:
     lib_dir: libs
@@ -52,7 +52,12 @@ library(tidyverse)
 # R
 
 - R tiene objetos pero tira mas bien para lo funcional
-- R base tiene `lapply`, `vapply`, etc.
+- Hay cosas que no parecen funciones pero son:
+```{r}
+1 + 2
+`+`(1, 2)
+```
+
 - Purrr es una librería que busca hacer más homogénea la API
 
 ---
@@ -65,14 +70,28 @@ library(tidyverse)
 ```{r message=FALSE, warning=FALSE}
 library(scales)
 f <- number_format(big.mark = ".", decimal.mark=",")
+class(f)
 f(c(1e6, 2e6))
 ```
 ---
-# Otro ejemplo
+# `lapply`
+
+```{r }
+lapply(mpg, is.numeric)
+```
+
+---
+# `vapply`  y `sapply` 
+
+Simplifican el resultado
 
 ```{r }
 vapply(mpg, is.numeric, logical(1))
+sapply(mpg, is.numeric)
+
 ```
+
+
 ---
 # Map
 
@@ -186,7 +205,16 @@ map_dbl(1:3, as.character)
 ```
 
 ---
-# Demo
+# Ejercicio 1
+
+- Usar split para crear una lista de los subsets de `mtcars` por `mtcars$cyl`
+- Estimar la regresión de `mpg` contra `wt` en cada elemento de la lista
+- Extraer la pendiente
+- Ponerlo en un vector numérico
+
+---
+
+# Ejercicio 1 (sol)
 
 ```{r}
 by_cyl <- split(mtcars, mtcars$cyl)
@@ -198,7 +226,7 @@ by_cyl %>%
   
 ```
 ---
-# Ejercicio
+# Ejercicio 2
 
 Aplicar `bootstrap` 10 veces a mtcars, estimar la regresión $mpg = b_0 + b_1 disp$ y obtener el $R^2$ de cada iteración. 
 
@@ -225,7 +253,7 @@ map(1:10, ~bootstrap(mtcars)) %>%
 
 ---
 
-# Ejercicio 2
+# Ejercicio 3
 
 Tengo una carpeta llena de xmls:
 
